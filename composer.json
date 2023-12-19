@@ -1,0 +1,23 @@
+{
+    "name": "mehdi/blind-fold-test",
+    "description": "An efficient composer package to test all of your routes with send request to make sure all things works well",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Mehdi\\BlindFoldTest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mehdi",
+            "email": "mehdifathi.developer@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "laravel/framework": "10.*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    }
+}
