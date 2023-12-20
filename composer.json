@@ -4,7 +4,7 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Mehdi\\BlindFoldTest\\": "src/"
+            "BlindFoldTest\\": "src/"
         }
     },
     "authors": [
@@ -18,6 +18,17 @@
         "laravel/framework": "10.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.5",
+
+        "orchestra/testbench": "^8.0.0",
+        "laravel/laravel" : "10.*"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        },
+        "classmap": [
+            "/Users/mehdi/Sites/blindFoldTest/test/TestCase.php"
+        ]
     }
 }
