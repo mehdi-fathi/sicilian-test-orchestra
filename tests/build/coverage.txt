@@ -1,10 +1,12 @@
 
 
 Code Coverage Report:   
-  2023-12-20 06:19:34   
+  2023-12-21 19:25:32   
                         
  Summary:               
-  Classes:  0.00% (0/4) 
-  Methods:  0.00% (0/9) 
-  Lines:    0.00% (0/19)
+  Classes: 50.00% (1/2) 
+  Methods: 25.00% (1/4) 
+  Lines:    9.09% (1/11)
 
+BlindFoldTest\Controller\SampleController
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)

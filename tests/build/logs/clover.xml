@@ -1,58 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703053174">
-  <project timestamp="1703053174">
-    <file name="/Users/mehdi/Sites/blindFoldTest/src/Controrller/SampleController.php">
-      <class name="BlindFoldTest\Controller\SampleController" namespace="global">
-        <metrics complexity="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
+<coverage generated="1703186731">
+  <project timestamp="1703186731">
+    <file name="/Users/mehdi/Sites/blindFoldTest/src/Controller/Request/UserPreferenceStoreRequest.php">
+      <class name="BlindFoldTest\Controller\Request\UserPreferenceStoreRequest" namespace="global">
+        <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="13" coveredelements="0"/>
       </class>
-      <line num="15" type="method" name="index" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="18" type="stmt" count="0"/>
-      <metrics loc="20" ncloc="19" classes="1" methods="1" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="0" elements="2" coveredelements="0"/>
-    </file>
-    <file name="/Users/mehdi/Sites/blindFoldTest/src/Controrller/UserPreferenceController.php">
-      <class name="App\Http\Controllers\Api\UserPreferenceController" namespace="global">
-        <metrics complexity="4" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="15" coveredelements="0"/>
-      </class>
-      <line num="19" type="method" name="list" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="21" type="stmt" count="0"/>
-      <line num="22" type="stmt" count="0"/>
-      <line num="78" type="method" name="store" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="81" type="stmt" count="0"/>
-      <line num="83" type="stmt" count="0"/>
-      <line num="140" type="method" name="update" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="142" type="stmt" count="0"/>
-      <line num="144" type="stmt" count="0"/>
-      <line num="170" type="method" name="delete" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="172" type="stmt" count="0"/>
-      <line num="173" type="stmt" count="0"/>
-      <line num="174" type="stmt" count="0"/>
-      <line num="176" type="stmt" count="0"/>
-      <line num="178" type="stmt" count="0"/>
-      <metrics loc="182" ncloc="47" classes="1" methods="4" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="0" elements="15" coveredelements="0"/>
-    </file>
-    <file name="/Users/mehdi/Sites/blindFoldTest/src/Handler.php">
-      <class name="BlindFoldTest\Handler" namespace="global">
-        <metrics complexity="3" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="7" coveredelements="0"/>
-      </class>
-      <line num="27" type="method" name="register" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="15" type="method" name="authorize" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="17" type="stmt" count="0"/>
+      <line num="25" type="method" name="rules" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="27" type="stmt" count="0"/>
+      <line num="28" type="stmt" count="0"/>
       <line num="29" type="stmt" count="0"/>
+      <line num="30" type="stmt" count="0"/>
       <line num="31" type="stmt" count="0"/>
-      <line num="34" type="method" name="render" visibility="public" complexity="2" crap="6" count="0"/>
-      <line num="36" type="stmt" count="0"/>
+      <line num="32" type="stmt" count="0"/>
+      <line num="35" type="method" name="failedValidation" visibility="protected" complexity="1" crap="2" count="0"/>
       <line num="37" type="stmt" count="0"/>
-      <line num="40" type="stmt" count="0"/>
-      <metrics loc="43" ncloc="34" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="5" coveredstatements="0" elements="7" coveredelements="0"/>
+      <line num="38" type="stmt" count="0"/>
+      <line num="39" type="stmt" count="0"/>
+      <metrics loc="42" ncloc="34" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="13" coveredelements="0"/>
     </file>
-    <file name="/Users/mehdi/Sites/blindFoldTest/src/Kernel.php">
-      <class name="BlindFoldTest\Kernel" namespace="global">
-        <metrics complexity="2" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
+    <file name="/Users/mehdi/Sites/blindFoldTest/src/Controller/SampleController.php">
+      <class name="BlindFoldTest\Controller\SampleController" namespace="global">
+        <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="14" type="method" name="schedule" visibility="protected" complexity="1" crap="2" count="0"/>
-      <line num="19" type="stmt" count="0"/>
-      <line num="24" type="method" name="commands" visibility="protected" complexity="1" crap="2" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <metrics loc="31" ncloc="20" classes="1" methods="2" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="2" coveredstatements="0" elements="4" coveredelements="0"/>
+      <line num="15" type="method" name="index" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="17" type="stmt" count="1"/>
+      <metrics loc="20" ncloc="20" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
-    <metrics files="4" loc="276" ncloc="120" classes="4" methods="9" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="19" coveredstatements="0" elements="28" coveredelements="0"/>
+    <metrics files="2" loc="62" ncloc="54" classes="2" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="1" elements="15" coveredelements="2"/>
   </project>
 </coverage>
