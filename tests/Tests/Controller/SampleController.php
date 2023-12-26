@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Validator;
 
 class SampleController extends BaseController
 {
@@ -22,7 +23,26 @@ class SampleController extends BaseController
 
     public function save(Request $request)
     {
-        dd($request->all());
+        $rules = [
+            'name' => ['required', 'string', 'min:1', 'max:4'],
+            'email' => ['required', 'email', 'min:1', 'max:40'],
+            'from_date' => ['required', 'date'],
+            'age' => ['required', 'numeric', 'min:1', 'max:8'],
+            'has_job' => ['required', 'boolean'],
+            'favorite_colors' => ['required', 'array']
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            // For debugging: Display the errors
+            dd($validator->errors());
+
+            // Alternatively, you can return the errors as a response
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
         return 'This is a sample controller response';
     }
 }

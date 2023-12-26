@@ -10,9 +10,12 @@ class RequestTest
             'data' => [
                 'name' => ['required', 'string', 'min:1', 'max:4'],
                 'email' => ['required', 'email', 'min:1', 'max:40'],
-                'from_date' => ['required', 'date','from:','to:'],
+                'from_date' => ['required', 'date', 'from:', 'to:'],
                 'age' => ['required', 'numeric', 'min:1', 'max:8'],
-            ]
+                'has_job' => ['required', 'boolean'],
+                'favorite_colors' => ['required', 'array'],
+            ],
+            'status' => 200
         ]
     ];
 

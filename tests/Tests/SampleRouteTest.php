@@ -63,15 +63,17 @@ class SampleRouteTest extends \TestCase
                     // $rules = $request->rules();
 
                     $this->requests = $req;
+
                     $data = $this->generateFakeData();
 
                     $res = $this->post($route->uri, $data);
-                    $res->assertStatus(200);
+
+                    $res->assertStatus($this->requests['status']);
 
                     // dd($validator);
 
                     // dd();
-                    dump($res->getStatusCode(), $route->uri, $data);
+                    // dump($res->getStatusCode(), $route->uri, $data);
                     break;
                 default:
                     break;
@@ -91,10 +93,8 @@ class SampleRouteTest extends \TestCase
     {
         $fakeData = [];
 
-        foreach ($this->requests as $request) {
-            foreach ($request as $field => $rules) {
-                $fakeData[$field] = $this->generateFieldData($rules);
-            }
+        foreach ($this->requests['data'] as $field => $rules) {
+            $fakeData[$field] = $this->generateFieldData($rules);
         }
 
         return $fakeData;
@@ -106,7 +106,7 @@ class SampleRouteTest extends \TestCase
 
         foreach ($rules as $rule) {
             if (str_contains($rule, 'string')) {
-                return $faker->word($this->extractMin($rules), $this->extractMax($rules));
+                return $this->generateFakeWord($this->extractMin($rules), $this->extractMax($rules));
             }
             if (str_contains($rule, 'email')) {
                 return $faker->email($this->extractMin($rules), $this->extractMax($rules));
@@ -119,7 +119,27 @@ class SampleRouteTest extends \TestCase
             if (str_contains($rule, 'numeric')) {
                 return $faker->numberBetween($this->extractMin($rules), $this->extractMax($rules));
             }
+
+            // Handling boolean
+            if (str_contains($rule, 'boolean')) {
+                return $faker->boolean;
+            }
+
+            // Handling array
+            if (str_contains($rule, 'array')) {
+                return $faker->words; // Returns an array of words
+            }
+
         }
+    }
+
+    function generateFakeWord($minLength, $maxLength) {
+        $faker = Faker::create();
+        do {
+            $word = $faker->word;
+        } while (strlen($word) < $minLength || strlen($word) > $maxLength);
+
+        return $word;
     }
 
     protected function extractMin($rules)
