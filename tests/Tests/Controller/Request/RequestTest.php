@@ -15,7 +15,23 @@ class RequestTest
                 'has_job' => ['required', 'boolean'],
                 'favorite_colors' => ['required', 'array'],
             ],
-            'status' => 200
+            'should_status' => 200,
+            'call' => 10,
+            'next' => [
+               [
+                   'route' => 'sample',
+                   'data' => [
+                       'name' => ['required', 'string', 'min:1', 'max:4'],
+                       'email' => ['required', 'email', 'min:1', 'max:40'],
+                       'from_date' => ['required', 'date', 'from:', 'to:'],
+                       'age' => ['required', 'numeric', 'min:1', 'max:8'],
+                       'has_job' => ['required', 'boolean'],
+                       'favorite_colors' => ['required', 'array'],
+                   ],
+                   'should_status' => 200,
+
+               ]
+            ]
         ]
     ];
 

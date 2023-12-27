@@ -24,4 +24,8 @@
         <ini name="xdebug.mode" value="coverage"/>
         <env name="XDEBUG_MODE" value="coverage"/>
     </php>
+    <listeners>
+        <listener class="CustomTestListener"
+                  file="/Users/mehdi/Sites/blindFoldTest/tests/Tests/CustomTestListener.php"/>
+    </listeners>
 </phpunit>

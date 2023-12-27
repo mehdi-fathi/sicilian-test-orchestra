@@ -64,11 +64,35 @@ class SampleRouteTest extends \TestCase
 
                     $this->requests = $req;
 
-                    $data = $this->generateFakeData();
+                    $total = 0;
+                    $green = "\033[32m";
 
-                    $res = $this->post($route->uri, $data);
+                    while ($total < $this->requests['call']) {
 
-                    $res->assertStatus($this->requests['status']);
+                        $data = $this->generateFakeData($this->requests['data']);
+
+                        $res = $this->post($route->uri, $data);
+
+                        $this->showData($green, $data);
+
+                        $total++;
+                        $res->assertStatus($this->requests['should_status']);
+
+                    }
+
+                    foreach ($this->requests['next'] as $item) {
+
+                        $data = $this->generateFakeData($this->requests['data']);
+
+                        // dd(route($item['route']));
+
+                        $res = $this->get($item['route'], $data);
+
+                        $this->showData($green, $data);
+
+                        $res->assertStatus($item['should_status']);
+                    }
+
 
                     // dd($validator);
 
@@ -89,11 +113,11 @@ class SampleRouteTest extends \TestCase
         // dd("run");
     }
 
-    public function generateFakeData()
+    public function generateFakeData($data)
     {
         $fakeData = [];
 
-        foreach ($this->requests['data'] as $field => $rules) {
+        foreach ($data as $field => $rules) {
             $fakeData[$field] = $this->generateFieldData($rules);
         }
 
@@ -133,7 +157,8 @@ class SampleRouteTest extends \TestCase
         }
     }
 
-    function generateFakeWord($minLength, $maxLength) {
+    function generateFakeWord($minLength, $maxLength)
+    {
         $faker = Faker::create();
         do {
             $word = $faker->word;
@@ -160,6 +185,17 @@ class SampleRouteTest extends \TestCase
             }
         }
         return 255; // Default maximum
+    }
+
+    /**
+     * @param string $green
+     * @param $data
+     * @return void
+     */
+    private function showData(string $green, $data)
+    {
+        echo $green . "Test Data : " . PHP_EOL;
+        print_r($data) . PHP_EOL;
     }
 
 }

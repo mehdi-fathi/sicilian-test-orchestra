@@ -23,6 +23,7 @@ class SampleController extends BaseController
 
     public function save(Request $request)
     {
+        // dump($request->get('name'));
         $rules = [
             'name' => ['required', 'string', 'min:1', 'max:4'],
             'email' => ['required', 'email', 'min:1', 'max:40'],
