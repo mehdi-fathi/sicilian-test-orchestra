@@ -37,9 +37,6 @@ class SampleController extends BaseController
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
-            // For debugging: Display the errors
-            dd($validator->errors());
-
             // Alternatively, you can return the errors as a response
             return response()->json(['errors' => $validator->errors()], 422);
         }
