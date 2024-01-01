@@ -3,6 +3,7 @@
 namespace Tests\Tests\Controller;
 
 
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -17,7 +18,12 @@ class SampleController extends BaseController
 
     public function index()
     {
-        return 'This is a sample controller response';
+        $activeUsers = User::get();
+
+        // If you're building an API, you might return JSON:
+        return response()->json(['users' => $activeUsers]);
+        // dd($this->data);
+        // return response()->json($this->data, 200);
     }
 
 

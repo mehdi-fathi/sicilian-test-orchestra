@@ -7,3 +7,4 @@
 "preferences.sources" =>  'string'
 ]
 
+2- we delete database based on per strategy

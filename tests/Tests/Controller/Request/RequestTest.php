@@ -24,6 +24,10 @@ class RequestTest
                     'method' => 'get',
                     'data' => [],
                     'should_status' => 200,
+                    'should_see' => [
+                            'pre_route' => 'save',
+                            'should_see' => ['name'],
+                    ],
                     'call' => 1,
                 ],
                 [

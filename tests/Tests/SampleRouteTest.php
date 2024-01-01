@@ -6,6 +6,7 @@ namespace Tests;
 use App\Http\Requests\UserPreferenceStoreRequest;
 use BlindFoldTest\SampleController;
 use Faker\Factory as Faker;
+use Illuminate\Support\Facades\DB;
 use Tests\Tests\Controller\Request\RequestTest;
 
 /**
@@ -17,6 +18,8 @@ class SampleRouteTest extends \TestCase
      * @var \Faker\Generator
      */
     private \Faker\Generator $faker;
+
+    private $data;
 
     /**
      *
@@ -54,11 +57,12 @@ class SampleRouteTest extends \TestCase
         if (!empty($method)) {
             // $this->processGetRequest($request);
             $data = $this->generateFakeData($request['data']);
+            $this->data[$route] = $data;
             $this->processRequest($route, $request['method'], $request['should_status'], $data, $request['call']);
 
             foreach ($request['next'] as $item) {
                 $data = $this->generateFakeData($request['data']);
-                $this->processRequest($item['route'], $item['method'], $request['should_status'], $data, $item['call']);
+                $this->processRequest($item['route'], $item['method'], $request['should_status'], $data, $item['call'], $item['should_see'] ?? []);
             }
         }
     }
@@ -68,15 +72,47 @@ class SampleRouteTest extends \TestCase
      * @param $method
      * @param $should_status
      * @param $data
-     * @param $call
+     * @param int $call
+     * @param null $should_see
      * @return void
      */
-    private function processRequest($route, $method, $should_status, $data, $call = 1)
+    private function processRequest($route, $method, $should_status, $data, $call = 1, $should_see = [])
     {
 
         for ($i = 0; $i < $call; $i++) {
+
+
+            if (!empty($should_see)) {
+
+                foreach ($should_see['should_see'] as $item) {
+                    // dd($item);
+                    $name[] = $this->data[$should_see['pre_route']][$item];
+
+                }
+
+                // dd($should_see['pre_route'], $this->data[$should_see['pre_route']]);
+            }
+
+            if (!empty($name)) {
+
+                $mock = \Mockery::mock('overload:App\Models\User');
+                $mock->shouldReceive('get')
+                    ->andReturn($name);
+
+            }
+
+
+            //@see
             $response = $this->{$method}($route, $data);
             $response->assertStatus($should_status);
+
+            if (!empty($should_see)) {
+
+                // dd($name);
+                $response->assertSee($name);
+
+                // $this->post()->assertSee()
+            }
         }
     }
 
