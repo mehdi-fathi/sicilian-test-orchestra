@@ -1,8 +1,8 @@
 <?php
 
-namespace Tests\Tests\Controller\Request;
+namespace BlindFoldTest\Request;
 
-class RequestTest
+class StrategyRequestList
 {
 
     protected $requests = [

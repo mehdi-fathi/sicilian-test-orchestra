@@ -1,33 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1703186731">
-  <project timestamp="1703186731">
-    <file name="/Users/mehdi/Sites/blindFoldTest/src/Controller/Request/UserPreferenceStoreRequest.php">
-      <class name="BlindFoldTest\Controller\Request\UserPreferenceStoreRequest" namespace="global">
-        <metrics complexity="3" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="13" coveredelements="0"/>
+<coverage generated="1704310257">
+  <project timestamp="1704310257">
+    <file name="/Users/mehdi/Sites/blindFoldTest/src/FakerrData.php">
+      <class name="BlindFoldTest\FakerrData" namespace="global">
+        <metrics complexity="19" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="35" coveredelements="29"/>
       </class>
-      <line num="15" type="method" name="authorize" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="17" type="stmt" count="0"/>
-      <line num="25" type="method" name="rules" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="27" type="stmt" count="0"/>
-      <line num="28" type="stmt" count="0"/>
+      <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
       <line num="29" type="stmt" count="0"/>
-      <line num="30" type="stmt" count="0"/>
-      <line num="31" type="stmt" count="0"/>
-      <line num="32" type="stmt" count="0"/>
-      <line num="35" type="method" name="failedValidation" visibility="protected" complexity="1" crap="2" count="0"/>
-      <line num="37" type="stmt" count="0"/>
-      <line num="38" type="stmt" count="0"/>
-      <line num="39" type="stmt" count="0"/>
-      <metrics loc="42" ncloc="34" classes="1" methods="3" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="10" coveredstatements="0" elements="13" coveredelements="0"/>
+      <line num="36" type="method" name="generateFakeData" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="38" type="stmt" count="1"/>
+      <line num="40" type="stmt" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="44" type="stmt" count="1"/>
+      <line num="51" type="method" name="generateFieldData" visibility="protected" complexity="8" crap="8" count="1"/>
+      <line num="53" type="stmt" count="1"/>
+      <line num="54" type="stmt" count="1"/>
+      <line num="55" type="stmt" count="1"/>
+      <line num="57" type="stmt" count="1"/>
+      <line num="58" type="stmt" count="1"/>
+      <line num="61" type="stmt" count="1"/>
+      <line num="62" type="stmt" count="1"/>
+      <line num="65" type="stmt" count="1"/>
+      <line num="66" type="stmt" count="1"/>
+      <line num="70" type="stmt" count="1"/>
+      <line num="71" type="stmt" count="1"/>
+      <line num="75" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="1"/>
+      <line num="87" type="method" name="generateFakeWord" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="90" type="stmt" count="1"/>
+      <line num="91" type="stmt" count="1"/>
+      <line num="93" type="stmt" count="1"/>
+      <line num="100" type="method" name="extractMin" visibility="protected" complexity="3" crap="3.14" count="1"/>
+      <line num="102" type="stmt" count="1"/>
+      <line num="103" type="stmt" count="1"/>
+      <line num="104" type="stmt" count="1"/>
+      <line num="107" type="stmt" count="0"/>
+      <line num="114" type="method" name="extractMax" visibility="protected" complexity="3" crap="3.14" count="1"/>
+      <line num="116" type="stmt" count="1"/>
+      <line num="117" type="stmt" count="1"/>
+      <line num="118" type="stmt" count="1"/>
+      <line num="121" type="stmt" count="0"/>
+      <metrics loc="125" ncloc="90" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="35" coveredelements="29"/>
     </file>
-    <file name="/Users/mehdi/Sites/blindFoldTest/src/Controller/SampleController.php">
-      <class name="BlindFoldTest\Controller\SampleController" namespace="global">
+    <file name="/Users/mehdi/Sites/blindFoldTest/src/Request/StrategyRequestList.php">
+      <class name="BlindFoldTest\Request\StrategyRequestList" namespace="global">
         <metrics complexity="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
       </class>
-      <line num="15" type="method" name="index" visibility="public" complexity="1" crap="1" count="1"/>
-      <line num="17" type="stmt" count="1"/>
-      <metrics loc="20" ncloc="20" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
+      <line num="48" type="method" name="getRequests" visibility="public" complexity="1" crap="1" count="1"/>
+      <line num="50" type="stmt" count="1"/>
+      <metrics loc="54" ncloc="51" classes="1" methods="1" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="1" coveredstatements="1" elements="2" coveredelements="2"/>
     </file>
-    <metrics files="2" loc="62" ncloc="54" classes="2" methods="4" coveredmethods="1" conditionals="0" coveredconditionals="0" statements="11" coveredstatements="1" elements="15" coveredelements="2"/>
+    <metrics files="2" loc="179" ncloc="141" classes="2" methods="7" coveredmethods="4" conditionals="0" coveredconditionals="0" statements="30" coveredstatements="27" elements="37" coveredelements="31"/>
   </project>
 </coverage>
