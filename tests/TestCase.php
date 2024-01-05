@@ -1,4 +1,5 @@
 <?php
+namespace Tests;
 
 
 use Illuminate\Contracts\Console\Kernel;
@@ -8,7 +9,7 @@ use Illuminate\Foundation\Application;
 /**
  * Class TestCase.
  */
-class TestCase extends Orchestra\Testbench\TestCase
+class TestCase extends \Orchestra\Testbench\TestCase
 {
     /**
      * @var m\LegacyMockInterface|m\MockInterface

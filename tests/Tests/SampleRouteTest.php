@@ -5,16 +5,19 @@ namespace Tests;
 
 use App\Http\Requests\UserPreferenceStoreRequest;
 use BlindFoldTest\FakerrData;
-use BlindFoldTest\Request\StrategyRequestList;
+use BlindFoldTest\RequestStrategyTestable;
 use BlindFoldTest\SampleController;
+use Tests\Tests\Request\RequestStrategyList;
 
 /**
  *
  */
-class SampleRouteTest extends \TestCase
+class SampleRouteTest extends TestCase
 {
+    use RequestStrategyTestable;
 
     private $data;
+    private $requests;
 
     private $fakeData;
 
@@ -26,69 +29,40 @@ class SampleRouteTest extends \TestCase
         parent::__construct();
 
         $this->fakeData = new FakerrData();
+        $this->requests = (new RequestStrategyList())->getRequests();
     }
 
-    /** @test */
-    public function it_returns_sample_response()
+    public function mockdata($data, $request, $route)
     {
-        $requests = (new StrategyRequestList())->getRequests();
-
-        foreach ($requests as $route => $request) {
-            $this->processRoute($route, $request);
-        }
-
-    }
-
-    /**
-     * @param $route
-     * @param $request
-     * @return void
-     */
-    private function processRoute($route, $request)
-    {
-        // if ($this->isSkippableRoute($route)) {
-        //     return;
-        // }
 
         $method = $request['method'];
 
         if (!empty($method)) {
-            // $this->processGetRequest($request);
-            $data = $this->fakeData->generateFakeData($request['data']);
-            $this->data[$route] = $data;
-            $this->processRequest($route, $request['method'], $request['should_status'], $data, $request['call']);
 
+            $this->mockDataInner($request['call']);
             foreach ($request['next'] as $item) {
-                $data = $this->fakeData->generateFakeData($request['data']);
-                $this->processRequest($item['route'], $item['method'], $request['should_status'], $data, $item['call'], $item['should_see'] ?? []);
+                $this->mockDataInner($item['call'], $item['should_see'] ?? []);
             }
         }
+
     }
 
     /**
-     * @param $route
-     * @param $method
-     * @param $should_status
-     * @param $data
      * @param int $call
-     * @param null $should_see
+     * @param array $should_see
      * @return void
      */
-    private function processRequest($route, $method, $should_status, $data, $call = 1, $should_see = [])
+    private function mockDataInner($call = 1, $should_see = []): void
     {
 
         for ($i = 0; $i < $call; $i++) {
 
-
             if (!empty($should_see)) {
 
                 foreach ($should_see['should_see'] as $item) {
-                    // dd($item);
                     $name[] = $this->data[$should_see['pre_route']][$item];
 
                 }
-
-                // dd($should_see['pre_route'], $this->data[$should_see['pre_route']]);
             }
 
             if (!empty($name)) {
@@ -99,20 +73,10 @@ class SampleRouteTest extends \TestCase
 
             }
 
-
-            //@see
-            $response = $this->{$method}($route, $data);
-            $response->assertStatus($should_status);
-
-            if (!empty($should_see)) {
-
-                // dd($name);
-                $response->assertSee($name);
-
-                // $this->post()->assertSee()
-            }
         }
     }
+
+
     //
 
 }
