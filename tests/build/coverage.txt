@@ -1,7 +1,7 @@
 
 
 Code Coverage Report:    
-  2024-01-05 10:00:41    
+  2024-01-05 10:19:56    
                          
  Summary:                
   Classes:  0.00% (0/2)  
@@ -10,5 +10,5 @@ Code Coverage Report:
 
 BlindFoldTest\FakerrData
   Methods:  50.00% ( 3/ 6)   Lines:  89.66% ( 26/ 29)
-BlindFoldTest\RouteTest
+BlindFoldTest\RequestStrategyTestable
   Methods:  75.00% ( 3/ 4)   Lines:  95.00% ( 19/ 20)
