@@ -1,12 +1,12 @@
 <?php
 
-namespace BlindFoldTest;
+namespace SicilianTestOrchestra;
 
 
 use App\Http\Requests\UserPreferenceStoreRequest;
-use BlindFoldTest\FakerrData;
-use BlindFoldTest\Request\StrategyRequestList;
-use BlindFoldTest\SampleController;
+use SicilianTestOrchestra\FakerrData;
+use SicilianTestOrchestra\Request\StrategyRequestList;
+use SicilianTestOrchestra\SampleController;
 use Tests\TestCase;
 
 /**

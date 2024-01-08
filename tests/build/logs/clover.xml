@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1704449996">
-  <project timestamp="1704449996">
+<coverage generated="1704736509">
+  <project timestamp="1704736509">
     <file name="/Users/mehdi/Sites/blindFoldTest/src/FakerrData.php">
-      <class name="BlindFoldTest\FakerrData" namespace="global">
+      <class name="SicilianTestOrchestra\FakerrData" namespace="global">
         <metrics complexity="19" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="35" coveredelements="29"/>
       </class>
       <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
@@ -43,7 +43,7 @@
       <metrics loc="125" ncloc="90" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="35" coveredelements="29"/>
     </file>
     <file name="/Users/mehdi/Sites/blindFoldTest/src/RequestStrategyTestable.php">
-      <class name="BlindFoldTest\RequestStrategyTestable" namespace="global">
+      <class name="SicilianTestOrchestra\RequestStrategyTestable" namespace="global">
         <metrics complexity="11" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="19" elements="24" coveredelements="22"/>
       </class>
       <line num="23" type="method" name="it_returns_sample_response" visibility="public" complexity="2" crap="2" count="1"/>

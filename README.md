@@ -1,7 +1,7 @@
 
 # Blind Fold Test
 
-Blind Fold Test is an automated testing package designed for RESTful applications. It tests all routes with generated faker data to ensure comprehensive coverage and robustness of your application.
+sicilian-test-orchestra is an automated testing package designed for RESTful applications. It tests all routes with generated faker data to ensure comprehensive coverage and robustness of your application.
 
 THIS PACKAGE IS UNDER DEVELOPING
 

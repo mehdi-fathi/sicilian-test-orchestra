@@ -1,10 +1,10 @@
 {
-    "name": "mehdi/blind-fold-test",
+    "name": "mehdi/sicilian-test-orchestra",
     "description": "An efficient composer package to test all of your routes with send request to make sure all things works well",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "BlindFoldTest\\": "src/"
+            "SicilianTestOrchestra\\": "src/"
         }
     },
     "authors": [
@@ -28,7 +28,7 @@
             "Tests\\": "tests"
         },
         "classmap": [
-            "/Users/mehdi/Sites/blindFoldTest/test/TestCase.php"
+            "tests/TestCase.php"
         ]
     }
 }

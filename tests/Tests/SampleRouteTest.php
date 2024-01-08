@@ -4,9 +4,8 @@ namespace Tests;
 
 
 use App\Http\Requests\UserPreferenceStoreRequest;
-use BlindFoldTest\FakerrData;
-use BlindFoldTest\RequestStrategyTestable;
-use BlindFoldTest\SampleController;
+use SicilianTestOrchestra\FakerrData;
+use SicilianTestOrchestra\RequestStrategyTestable;
 use Tests\Tests\Request\RequestStrategyList;
 
 /**
