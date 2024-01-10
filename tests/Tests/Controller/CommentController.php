@@ -9,14 +9,15 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Validator;
+use Tests\Tests\Model\Comment;
 
-class SampleController extends BaseController
+class CommentController extends BaseController
 {
 
     use AuthorizesRequests;
     use ValidatesRequests;
 
-    public function index()
+    public function list()
     {
         $activeUsers = User::get();
 
@@ -49,4 +50,40 @@ class SampleController extends BaseController
 
         return 'This is a sample controller response';
     }
+
+
+    // Display the specified resource.
+    public function show($id)
+    {
+        $comment = Comment::find($id);
+        return response()->json(['comment' => $comment]);
+    }
+
+    //
+    // // Show the form for editing the specified resource.
+    // public function edit(Post $post)
+    // {
+    //     return view('posts.edit', compact('post'));
+    // }
+    //
+    // // Update the specified resource in storage.
+    // public function update(Request $request, Post $post)
+    // {
+    //     $validatedData = $request->validate([
+    //         'title' => 'required|max:255',
+    //         'body' => 'required',
+    //     ]);
+    //
+    //     $post->update($validatedData);
+    //
+    //     return redirect('/posts')->with('success', 'Post updated successfully.');
+    // }
+    //
+    // // Remove the specified resource from storage.
+    // public function destroy(Post $post)
+    // {
+    //     $post->delete();
+    //
+    //     return redirect('/posts')->with('success', 'Post deleted successfully.');
+    // }
 }

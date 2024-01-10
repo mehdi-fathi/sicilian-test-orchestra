@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/sample', [\Tests\Tests\Controller\SampleController::class, 'index']);
+Route::get('/list', [\Tests\Tests\Controller\CommentController::class, 'list'])->name('list');
+Route::get('/show/{id}', [\Tests\Tests\Controller\CommentController::class, 'show'])->name('show');
 
-Route::post('/save', [\Tests\Tests\Controller\SampleController::class, 'save']);
+Route::post('/save', [\Tests\Tests\Controller\CommentController::class, 'save']);

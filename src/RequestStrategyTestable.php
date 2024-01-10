@@ -37,25 +37,21 @@ trait RequestStrategyTestable
      */
     public function processRoute($route, $request)
     {
-        // if ($this->isSkippableRoute($route)) {
-        //     return;
-        // }
 
         $method = $request['method'];
 
         if (!empty($method)) {
-            // $this->processGetRequest($request);
             $data = $this->fakeData->generateFakeData($request['data']);
 
             $this->data[$route] = $data;
-            // dd($request);
+
             $this->mockdata($data, $request, $route);
 
             $this->processRequest($route, $request['method'], $request['should_status'], $data, $request['call']);
 
             foreach ($request['next'] as $item) {
-                $data = $this->fakeData->generateFakeData($request['data']);
-                $this->processRequest($item['route'], $item['method'], $request['should_status'], $data, $item['call'], $item['should_see'] ?? []);
+                $data = $this->fakeData->generateFakeData($item['data']);
+                $this->processRequest($item['route'], $item['method'], $request['should_status'], $data, $item['call'], $item['see'] ?? []);
             }
         }
     }
@@ -66,27 +62,43 @@ trait RequestStrategyTestable
      * @param $should_status
      * @param $data
      * @param int $call
-     * @param null $should_see
+     * @param null $see
      * @return void
      */
-    private function processRequest($route, $method, $should_status, $data, $call = 1, $should_see = [])
+    private function processRequest($route, $method, $should_status, $data, $call = 1, $see = [])
     {
 
         for ($i = 0; $i < $call; $i++) {
 
-            if (!empty($should_see)) {
 
-                foreach ($should_see['should_see'] as $item) {
-                    $name[] = $this->data[$should_see['pre_route']][$item];
+            if (!empty($see)) {
 
+                foreach ($see['should_see'] as $item) {
+                    $name[] = $this->data[$see['pre_route']][$item];
                 }
             }
 
-            //@see
-            $response = $this->{$method}($route, $data);
+
+            if ($method == 'get') {
+                dump($route);
+
+                $route_req = route($route, $data ?? []);
+
+                $response = $this->get($route_req);
+
+            } else {
+
+                $response = $this->{$method}($route, $data);
+            }
+
             $response->assertStatus($should_status);
 
-            if (!empty($should_see)) {
+            if (!empty($see)) {
+
+                if (@$see['how_see'] == 'array') {
+                    $response->assertJsonIsObject();
+                }
+
                 $response->assertSee($name);
             }
         }

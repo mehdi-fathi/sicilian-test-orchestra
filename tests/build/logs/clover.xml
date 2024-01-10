@@ -1,77 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1704736509">
-  <project timestamp="1704736509">
-    <file name="/Users/mehdi/Sites/blindFoldTest/src/FakerrData.php">
+<coverage generated="1704866511">
+  <project timestamp="1704866511">
+    <file name="/Users/mehdi/Sites/sicilian-test-orchestra/src/FakerrData.php">
       <class name="SicilianTestOrchestra\FakerrData" namespace="global">
         <metrics complexity="19" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="35" coveredelements="29"/>
       </class>
-      <line num="27" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="29" type="stmt" count="0"/>
-      <line num="36" type="method" name="generateFakeData" visibility="public" complexity="2" crap="2" count="1"/>
-      <line num="38" type="stmt" count="1"/>
+      <line num="26" type="method" name="__construct" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="28" type="stmt" count="0"/>
+      <line num="35" type="method" name="generateFakeData" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="37" type="stmt" count="1"/>
+      <line num="39" type="stmt" count="1"/>
       <line num="40" type="stmt" count="1"/>
-      <line num="41" type="stmt" count="1"/>
-      <line num="44" type="stmt" count="1"/>
-      <line num="51" type="method" name="generateFieldData" visibility="protected" complexity="8" crap="8" count="1"/>
+      <line num="43" type="stmt" count="1"/>
+      <line num="50" type="method" name="generateFieldData" visibility="protected" complexity="8" crap="8" count="1"/>
+      <line num="52" type="stmt" count="1"/>
       <line num="53" type="stmt" count="1"/>
       <line num="54" type="stmt" count="1"/>
-      <line num="55" type="stmt" count="1"/>
+      <line num="56" type="stmt" count="1"/>
       <line num="57" type="stmt" count="1"/>
-      <line num="58" type="stmt" count="1"/>
+      <line num="60" type="stmt" count="1"/>
       <line num="61" type="stmt" count="1"/>
-      <line num="62" type="stmt" count="1"/>
+      <line num="64" type="stmt" count="1"/>
       <line num="65" type="stmt" count="1"/>
-      <line num="66" type="stmt" count="1"/>
+      <line num="69" type="stmt" count="1"/>
       <line num="70" type="stmt" count="1"/>
-      <line num="71" type="stmt" count="1"/>
+      <line num="74" type="stmt" count="1"/>
       <line num="75" type="stmt" count="1"/>
-      <line num="76" type="stmt" count="1"/>
-      <line num="87" type="method" name="generateFakeWord" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="86" type="method" name="generateFakeWord" visibility="public" complexity="2" crap="2" count="1"/>
+      <line num="89" type="stmt" count="1"/>
       <line num="90" type="stmt" count="1"/>
-      <line num="91" type="stmt" count="1"/>
-      <line num="93" type="stmt" count="1"/>
-      <line num="100" type="method" name="extractMin" visibility="protected" complexity="3" crap="3.14" count="1"/>
+      <line num="92" type="stmt" count="1"/>
+      <line num="99" type="method" name="extractMin" visibility="protected" complexity="3" crap="3.14" count="1"/>
+      <line num="101" type="stmt" count="1"/>
       <line num="102" type="stmt" count="1"/>
       <line num="103" type="stmt" count="1"/>
-      <line num="104" type="stmt" count="1"/>
-      <line num="107" type="stmt" count="0"/>
-      <line num="114" type="method" name="extractMax" visibility="protected" complexity="3" crap="3.14" count="1"/>
+      <line num="106" type="stmt" count="0"/>
+      <line num="113" type="method" name="extractMax" visibility="protected" complexity="3" crap="3.14" count="1"/>
+      <line num="115" type="stmt" count="1"/>
       <line num="116" type="stmt" count="1"/>
       <line num="117" type="stmt" count="1"/>
-      <line num="118" type="stmt" count="1"/>
-      <line num="121" type="stmt" count="0"/>
-      <metrics loc="125" ncloc="90" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="35" coveredelements="29"/>
+      <line num="120" type="stmt" count="0"/>
+      <metrics loc="124" ncloc="89" classes="1" methods="6" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="29" coveredstatements="26" elements="35" coveredelements="29"/>
     </file>
-    <file name="/Users/mehdi/Sites/blindFoldTest/src/RequestStrategyTestable.php">
+    <file name="/Users/mehdi/Sites/sicilian-test-orchestra/src/RequestStrategyTestable.php">
       <class name="SicilianTestOrchestra\RequestStrategyTestable" namespace="global">
-        <metrics complexity="11" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="19" elements="24" coveredelements="22"/>
+        <metrics complexity="13" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="25" elements="30" coveredelements="28"/>
       </class>
       <line num="23" type="method" name="it_returns_sample_response" visibility="public" complexity="2" crap="2" count="1"/>
       <line num="27" type="stmt" count="1"/>
       <line num="28" type="stmt" count="1"/>
       <line num="38" type="method" name="processRoute" visibility="public" complexity="3" crap="3" count="1"/>
+      <line num="41" type="stmt" count="1"/>
+      <line num="43" type="stmt" count="1"/>
       <line num="44" type="stmt" count="1"/>
       <line num="46" type="stmt" count="1"/>
       <line num="48" type="stmt" count="1"/>
       <line num="50" type="stmt" count="1"/>
       <line num="52" type="stmt" count="1"/>
+      <line num="53" type="stmt" count="1"/>
       <line num="54" type="stmt" count="1"/>
-      <line num="56" type="stmt" count="1"/>
-      <line num="57" type="stmt" count="1"/>
-      <line num="58" type="stmt" count="1"/>
-      <line num="72" type="method" name="processRequest" visibility="private" complexity="5" crap="5" count="1"/>
-      <line num="75" type="stmt" count="1"/>
+      <line num="68" type="method" name="processRequest" visibility="private" complexity="7" crap="7" count="1"/>
+      <line num="71" type="stmt" count="1"/>
+      <line num="74" type="stmt" count="1"/>
+      <line num="76" type="stmt" count="1"/>
       <line num="77" type="stmt" count="1"/>
-      <line num="79" type="stmt" count="1"/>
-      <line num="80" type="stmt" count="1"/>
-      <line num="86" type="stmt" count="1"/>
+      <line num="82" type="stmt" count="1"/>
+      <line num="83" type="stmt" count="1"/>
+      <line num="85" type="stmt" count="1"/>
       <line num="87" type="stmt" count="1"/>
-      <line num="89" type="stmt" count="1"/>
-      <line num="90" type="stmt" count="1"/>
-      <line num="95" type="method" name="mockdata" visibility="public" complexity="1" crap="2" count="0"/>
-      <line num="97" type="stmt" count="0"/>
-      <metrics loc="100" ncloc="75" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="20" coveredstatements="19" elements="24" coveredelements="22"/>
+      <line num="91" type="stmt" count="1"/>
+      <line num="94" type="stmt" count="1"/>
+      <line num="96" type="stmt" count="1"/>
+      <line num="98" type="stmt" count="1"/>
+      <line num="99" type="stmt" count="1"/>
+      <line num="102" type="stmt" count="1"/>
+      <line num="107" type="method" name="mockdata" visibility="public" complexity="1" crap="2" count="0"/>
+      <line num="109" type="stmt" count="0"/>
+      <metrics loc="112" ncloc="93" classes="1" methods="4" coveredmethods="3" conditionals="0" coveredconditionals="0" statements="26" coveredstatements="25" elements="30" coveredelements="28"/>
     </file>
-    <metrics files="2" loc="225" ncloc="165" classes="2" methods="10" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="49" coveredstatements="45" elements="59" coveredelements="51"/>
+    <metrics files="2" loc="236" ncloc="182" classes="2" methods="10" coveredmethods="6" conditionals="0" coveredconditionals="0" statements="55" coveredstatements="51" elements="65" coveredelements="57"/>
   </project>
 </coverage>

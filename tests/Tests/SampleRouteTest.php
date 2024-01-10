@@ -6,6 +6,7 @@ namespace Tests;
 use App\Http\Requests\UserPreferenceStoreRequest;
 use SicilianTestOrchestra\FakerrData;
 use SicilianTestOrchestra\RequestStrategyTestable;
+use Tests\Tests\Model\Comment;
 use Tests\Tests\Request\RequestStrategyList;
 
 /**
@@ -40,7 +41,7 @@ class SampleRouteTest extends TestCase
 
             $this->mockDataInner($request['call']);
             foreach ($request['next'] as $item) {
-                $this->mockDataInner($item['call'], $item['should_see'] ?? []);
+                $this->mockDataInner($item['call'], $item['see'] ?? []);
             }
         }
 
@@ -51,15 +52,16 @@ class SampleRouteTest extends TestCase
      * @param array $should_see
      * @return void
      */
-    private function mockDataInner($call = 1, $should_see = []): void
+    private function mockDataInner($call = 1, $see = []): void
     {
 
-        for ($i = 0; $i < $call; $i++) {
+        for ($counter_call = 0; $counter_call < $call; $counter_call++) {
 
-            if (!empty($should_see)) {
+            if (!empty($see)) {
 
-                foreach ($should_see['should_see'] as $item) {
-                    $name[] = $this->data[$should_see['pre_route']][$item];
+                foreach ($see['should_see'] as $item) {
+
+                    $name[] = $this->data[$see['pre_route']][$item];
 
                 }
             }
@@ -69,6 +71,12 @@ class SampleRouteTest extends TestCase
                 $mock = \Mockery::mock('overload:App\Models\User');
                 $mock->shouldReceive('get')
                     ->andReturn($name);
+
+                // Create a mock instance of the Post model
+                $mockPost = \Mockery::mock('overload:Tests\Tests\Model\Comment');
+
+                // Mock the 'find' method to return the mockPost when a specific ID is queried
+                $mockPost->shouldReceive('find')->with(1)->andReturn($name[0]);
 
             }
 

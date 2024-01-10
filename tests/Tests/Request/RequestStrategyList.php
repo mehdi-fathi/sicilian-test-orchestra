@@ -10,31 +10,46 @@ class RequestStrategyList
         "save" => [
             'method' => 'post',
             'data' => [
-                'name' => ['required', 'string', 'min:1', 'max:4'],
-                'email' => ['required', 'email', 'min:1', 'max:40'],
-                'from_date' => ['required', 'date', 'from:', 'to:'],
-                'age' => ['required', 'numeric', 'min:1', 'max:8'],
-                'has_job' => ['required', 'boolean'],
-                'favorite_colors' => ['required', 'array'],
+                'name' => ['string', 'min:1', 'max:4'],
+                'email' => ['email', 'min:1', 'max:40'],
+                'from_date' => ['date', 'from:', 'to:'], //todo set from & to
+                'age' => ['numeric', 'min:1', 'max:8'],
+                'has_job' => ['boolean'],
+                'favorite_colors' => ['array'],
             ],
             'should_status' => 200,
             'call' => 10,
             'next' => [
                 [
-                    'route' => 'sample',
+                    'route' => 'list',
                     'method' => 'get',
                     'data' => [],
                     'should_status' => 200,
-                    'should_see' => [
-                            'pre_route' => 'save',
-                            'should_see' => ['name'],
+                    'see' => [
+                        'pre_route' => 'save',
+                        'how_see' => 'array',
+                        'should_see' => ['name'],
                     ],
                     'call' => 1,
                 ],
                 [
-                    'route' => 'sample',
+                    'route' => 'list',
                     'method' => 'get',
                     'data' => [],
+                    'should_status' => 200,
+                    'call' => 1,
+                ],
+                [
+                    'route' => 'show',
+                    'method' => 'get',
+                    'data' => [
+                        'id' => ['numeric', 'min:1', 'max:1']
+                    ],
+                    'see' => [
+                        'pre_route' => 'save',
+                        // 'how_see' => 'array',
+                        'should_see' => ['name'],
+                    ],
                     'should_status' => 200,
                     'call' => 2,
                 ]

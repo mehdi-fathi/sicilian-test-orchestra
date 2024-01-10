@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests;
 
 
@@ -20,6 +21,8 @@ class TestCase extends \Orchestra\Testbench\TestCase
         parent::setUp();
         $this->app->register(\Tests\ServiceProviderTest::class); // Register your service provider
 
+        // $this->app->register(RouteServiceProvider::class); // Register your service provider
+
     }
 
 
@@ -37,7 +40,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         // TODO: Implement createApplication() method.
 
-        $app = require '/Users/mehdi/Sites/blindFoldTest/vendor/laravel/laravel/bootstrap/app.php';
+        $app = require '/Users/mehdi/Sites/sicilian-test-orchestra/vendor/laravel/laravel/bootstrap/app.php';
         $app->make(Kernel::class)->bootstrap();
 
 
