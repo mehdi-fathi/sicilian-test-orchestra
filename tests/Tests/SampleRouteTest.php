@@ -21,6 +21,8 @@ class SampleRouteTest extends TestCase
 
     private $fakeData;
 
+    private $is_destroy = false;
+
     /**
      *
      */
@@ -39,23 +41,45 @@ class SampleRouteTest extends TestCase
 
         if (!empty($method)) {
 
-            $this->mockDataInner($request['call']);
+            $this->mockDataInner($request);
             foreach ($request['next'] as $item) {
-                $this->mockDataInner($item['call'], $item['see'] ?? []);
+                $this->mockDataInner($item);
             }
         }
 
     }
 
     /**
-     * @param int $call
-     * @param array $should_see
+     * @param $items
      * @return void
      */
-    private function mockDataInner($call = 1, $see = []): void
+    public function mockDataInner($items): void
     {
 
+        // dump($items['route'] ?? null, 'item');
+
+        $call = (int)$items['call'];
+        $see = $items['see'] ?? null;
+
+
+        // Create a mock instance of the Post model
+        $mockPost = \Mockery::mock('overload:Tests\Tests\Model\Comment');
+
+        $mockPost->shouldReceive('find')->with(1)->andReturn([]);
+
+        $mockPost->shouldReceive('destroy')
+            ->once()
+            ->with(1)
+            ->andReturn(true);
+
+
+        $mock = \Mockery::mock('overload:App\Models\User');
+        $mock->shouldReceive('get')
+            ->andReturn([]);
+
+
         for ($counter_call = 0; $counter_call < $call; $counter_call++) {
+
 
             if (!empty($see)) {
 
@@ -66,17 +90,57 @@ class SampleRouteTest extends TestCase
                 }
             }
 
-            if (!empty($name)) {
+            if (!empty($name) && $items['route'] == 'list') {
+                \Mockery::resetContainer();
 
                 $mock = \Mockery::mock('overload:App\Models\User');
                 $mock->shouldReceive('get')
                     ->andReturn($name);
 
+            }
+
+            if (!empty($items['route']) && !empty($name) && $items['route'] == 'show') {
+
+                \Mockery::resetContainer();
+
                 // Create a mock instance of the Post model
                 $mockPost = \Mockery::mock('overload:Tests\Tests\Model\Comment');
 
-                // Mock the 'find' method to return the mockPost when a specific ID is queried
                 $mockPost->shouldReceive('find')->with(1)->andReturn($name[0]);
+
+                $mockPost->shouldReceive('destroy')
+                    ->once()
+                    ->with(1)
+                    ->andReturn(true);
+            }
+            // dump( $items);
+
+            if (!empty($items['route']) && $items['route'] == 'destroy') {
+
+                \Mockery::resetContainer();
+
+                $mockPost = \Mockery::mock('overload:Tests\Tests\Model\Comment');
+
+                // Mock the 'find' method to return the mockPost when a specific ID is queried
+
+                // Mock the 'find' method to return the mockPost when a specific ID is queried
+                // $mockPost1->shouldReceive('destroy')->with(1)->andReturn();
+                $mockPost->shouldReceive('destroy')
+                    ->once()
+                    ->with(1)
+                    ->andReturn(true);
+
+                $this->is_destroy = true;
+
+            }
+
+            if ($this->is_destroy && $items['route'] == 'show') {
+
+                \Mockery::resetContainer();
+                $mockPost = \Mockery::mock('overload:Tests\Tests\Model\Comment');
+
+                $mockPost->shouldReceive('find')->with(1)->andReturn([]);
+
 
             }
 

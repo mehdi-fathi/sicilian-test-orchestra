@@ -1,14 +1,14 @@
 
 
 Code Coverage Report:    
-  2024-01-10 06:01:51    
+  2024-01-12 18:46:20    
                          
  Summary:                
   Classes:  0.00% (0/2)  
-  Methods: 60.00% (6/10) 
-  Lines:   92.73% (51/55)
+  Methods: 50.00% (5/10) 
+  Lines:   91.53% (54/59)
 
 SicilianTestOrchestra\FakerrData
   Methods:  50.00% ( 3/ 6)   Lines:  89.66% ( 26/ 29)
 SicilianTestOrchestra\RequestStrategyTestable
-  Methods:  75.00% ( 3/ 4)   Lines:  96.15% ( 25/ 26)
+  Methods:  50.00% ( 2/ 4)   Lines:  93.33% ( 28/ 30)

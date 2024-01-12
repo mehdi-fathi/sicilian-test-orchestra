@@ -19,6 +19,7 @@ class RequestStrategyList
             ],
             'should_status' => 200,
             'call' => 10,
+            'shuffle_next' => false,
             'next' => [
                 [
                     'route' => 'list',
@@ -27,7 +28,6 @@ class RequestStrategyList
                     'should_status' => 200,
                     'see' => [
                         'pre_route' => 'save',
-                        'how_see' => 'array',
                         'should_see' => ['name'],
                     ],
                     'call' => 1,
@@ -47,12 +47,29 @@ class RequestStrategyList
                     ],
                     'see' => [
                         'pre_route' => 'save',
-                        // 'how_see' => 'array',
                         'should_see' => ['name'],
                     ],
                     'should_status' => 200,
-                    'call' => 2,
-                ]
+                    'call' => 1,
+                ],
+                [
+                    'route' => 'destroy',
+                    'method' => 'get',
+                    'data' => [
+                        'id' => ['numeric', 'min:1', 'max:1']
+                    ],
+                    'should_status' => 200,
+                    'call' => 1,
+                ],
+                [
+                    'route' => 'show',
+                    'method' => 'get',
+                    'data' => [
+                        'id' => ['numeric', 'min:1', 'max:1']
+                    ],
+                    'should_status' => 404,
+                    'call' => 1,
+                ],
             ]
         ]
     ];

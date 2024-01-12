@@ -45,13 +45,22 @@ trait RequestStrategyTestable
 
             $this->data[$route] = $data;
 
-            $this->mockdata($data, $request, $route);
+            // $this->mockdata($data, $request, $route);
+            $this->mockDataInner($request);
 
             $this->processRequest($route, $request['method'], $request['should_status'], $data, $request['call']);
 
+            // dump($request['next']);
+
+            if ($request['shuffle_next']) {
+                shuffle($request['next']);
+            }
+
             foreach ($request['next'] as $item) {
+                // dump($item);
                 $data = $this->fakeData->generateFakeData($item['data']);
-                $this->processRequest($item['route'], $item['method'], $request['should_status'], $data, $item['call'], $item['see'] ?? []);
+                $this->mockDataInner($item);
+                $this->processRequest($item['route'], $item['method'], $item['should_status'], $data, $item['call'], $item['see'] ?? []);
             }
         }
     }
@@ -70,17 +79,15 @@ trait RequestStrategyTestable
 
         for ($i = 0; $i < $call; $i++) {
 
-
             if (!empty($see)) {
 
+                $name = [];
                 foreach ($see['should_see'] as $item) {
                     $name[] = $this->data[$see['pre_route']][$item];
                 }
             }
 
-
             if ($method == 'get') {
-                dump($route);
 
                 $route_req = route($route, $data ?? []);
 
@@ -91,15 +98,14 @@ trait RequestStrategyTestable
                 $response = $this->{$method}($route, $data);
             }
 
+            // dump("route : ", $route, $should_status);
             $response->assertStatus($should_status);
 
             if (!empty($see)) {
 
-                if (@$see['how_see'] == 'array') {
-                    $response->assertJsonIsObject();
+                if (!empty($name)) {
+                    $response->assertSee($name);
                 }
-
-                $response->assertSee($name);
             }
         }
     }

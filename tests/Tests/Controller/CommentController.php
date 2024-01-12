@@ -56,6 +56,9 @@ class CommentController extends BaseController
     public function show($id)
     {
         $comment = Comment::find($id);
+        if (empty($comment)) {
+            return response('', 404);
+        }
         return response()->json(['comment' => $comment]);
     }
 
@@ -80,10 +83,10 @@ class CommentController extends BaseController
     // }
     //
     // // Remove the specified resource from storage.
-    // public function destroy(Post $post)
-    // {
-    //     $post->delete();
-    //
-    //     return redirect('/posts')->with('success', 'Post deleted successfully.');
-    // }
+    public function destroy($id)
+    {
+        $comment = Comment::destroy($id);
+        return response()->json(['deleted']);
+
+    }
 }
