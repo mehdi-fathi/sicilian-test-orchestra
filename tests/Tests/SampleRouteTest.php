@@ -85,8 +85,10 @@ class SampleRouteTest extends TestCase
 
                 foreach ($see['should_see'] as $item) {
 
-                    $name[] = $this->data[$see['pre_route']][$item];
+                    if (!empty($this->data[$see['pre_route']])) {
+                        $name[] = $this->data[$see['pre_route']][$item];
 
+                    }
                 }
             }
 

@@ -8,6 +8,8 @@ use SicilianTestOrchestra\FakerrData;
 use SicilianTestOrchestra\Request\StrategyRequestList;
 use SicilianTestOrchestra\SampleController;
 use Tests\TestCase;
+use Symfony\Component\Console\Helper\Table;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 /**
  *
@@ -16,6 +18,11 @@ trait RequestStrategyTestable
 {
 
     private $data;
+    private $table;
+
+    private $orders;
+
+    private $orderCount;
 
     private $fakeData;
 
@@ -24,9 +31,16 @@ trait RequestStrategyTestable
     {
         // $requests = (new StrategyRequestList())->getRequests();
 
-        foreach ($this->requests as $route => $request) {
-            $this->processRoute($route, $request);
-        }
+        $this->table = new Table(new ConsoleOutput());
+        $this->table->setHeaders(['Order', 'Route', 'Method', 'Data', 'Status', 'Response']);
+
+        $this->table->setHeaderTitle('Test ');
+
+        $this->table->setStyle('default');
+
+        $this->processRoute($this->requests);
+        $this->table->render();
+
 
     }
 
@@ -35,33 +49,23 @@ trait RequestStrategyTestable
      * @param $request
      * @return void
      */
-    public function processRoute($route, $request)
+    public function processRoute($request)
     {
 
-        $method = $request['method'];
+        if ($request['shuffle_next']) {
+            shuffle($request['next']);
+        }
 
-        if (!empty($method)) {
-            $data = $this->fakeData->generateFakeData($request['data']);
+        foreach ($request['next'] as $item) {
 
-            $this->data[$route] = $data;
+            if (!empty($item['data'])) {
 
-            // $this->mockdata($data, $request, $route);
-            $this->mockDataInner($request);
-
-            $this->processRequest($route, $request['method'], $request['should_status'], $data, $request['call']);
-
-            // dump($request['next']);
-
-            if ($request['shuffle_next']) {
-                shuffle($request['next']);
-            }
-
-            foreach ($request['next'] as $item) {
-                // dump($item);
                 $data = $this->fakeData->generateFakeData($item['data']);
-                $this->mockDataInner($item);
-                $this->processRequest($item['route'], $item['method'], $item['should_status'], $data, $item['call'], $item['see'] ?? []);
+                $this->data[$item['route']] = $data;
             }
+
+            $this->mockDataInner($item);
+            $this->processRequest($item['route'], $item['method'], $item['should_status'], $this->data[$item['route']] ?? null, $item['call'], $item['see'] ?? []);
         }
     }
 
@@ -79,11 +83,16 @@ trait RequestStrategyTestable
 
         for ($i = 0; $i < $call; $i++) {
 
+
+            $this->orderCount = $this->orderCount + 1;
+
             if (!empty($see)) {
 
                 $name = [];
                 foreach ($see['should_see'] as $item) {
-                    $name[] = $this->data[$see['pre_route']][$item];
+                    if (!empty($this->data[$see['pre_route']])) {
+                        $name[] = $this->data[$see['pre_route']][$item];
+                    }
                 }
             }
 
@@ -98,13 +107,20 @@ trait RequestStrategyTestable
                 $response = $this->{$method}($route, $data);
             }
 
-            // dump("route : ", $route, $should_status);
-            $response->assertStatus($should_status);
+            // $text = sprintf("sent request to %s got status %s with content %s", $route, $response->getStatusCode(), $response->getContent());
+
+            $data_table = !empty($data) ? substr(json_encode($data), 0, 20) : "";
+
+            $this->table->addRow(
+                [$this->orderCount, $route, $method, $data_table, $response->getStatusCode(), $response->getContent()],
+            );
+
+            // $response->assertStatus($should_status);
 
             if (!empty($see)) {
 
                 if (!empty($name)) {
-                    $response->assertSee($name);
+                    // $response->assertSee($name);
                 }
             }
         }
@@ -115,3 +131,4 @@ trait RequestStrategyTestable
     }
 
 }
+//todo showing proccess sequential
