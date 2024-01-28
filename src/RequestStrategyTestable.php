@@ -45,7 +45,6 @@ trait RequestStrategyTestable
     }
 
     /**
-     * @param $route
      * @param $request
      * @return void
      */
@@ -58,14 +57,8 @@ trait RequestStrategyTestable
 
         foreach ($request['next'] as $item) {
 
-            if (!empty($item['data'])) {
-
-                $data = $this->fakeData->generateFakeData($item['data']);
-                $this->data[$item['route']] = $data;
-            }
-
             $this->mockDataInner($item);
-            $this->processRequest($item['route'], $item['method'], $item['should_status'], $this->data[$item['route']] ?? null, $item['call'], $item['see'] ?? []);
+            $this->processRequest($item['route'], $item['method'], $item['should_status'], $item['data'] ?? null, $item['call'], $item['see'] ?? []);
         }
     }
 
@@ -83,6 +76,11 @@ trait RequestStrategyTestable
 
         for ($i = 0; $i < $call; $i++) {
 
+            $data_new = [];
+            if (!empty($data)) {
+                $data_new = $this->fakeData->generateFakeData($data);
+                $this->data[$route] = $data_new;
+            }
 
             $this->orderCount = $this->orderCount + 1;
 
@@ -98,18 +96,18 @@ trait RequestStrategyTestable
 
             if ($method == 'get') {
 
-                $route_req = route($route, $data ?? []);
+                $route_req = route($route, $data_new ?? []);
 
                 $response = $this->get($route_req);
 
             } else {
 
-                $response = $this->{$method}($route, $data);
+                $response = $this->{$method}($route, $data_new);
             }
 
             // $text = sprintf("sent request to %s got status %s with content %s", $route, $response->getStatusCode(), $response->getContent());
 
-            $data_table = !empty($data) ? substr(json_encode($data), 0, 20) : "";
+            $data_table = !empty($data) ? substr(json_encode($data_new), 0, 40) : "";
 
             $this->table->addRow(
                 [$this->orderCount, $route, $method, $data_table, $response->getStatusCode(), $response->getContent()],
@@ -131,4 +129,3 @@ trait RequestStrategyTestable
     }
 
 }
-//todo showing proccess sequential

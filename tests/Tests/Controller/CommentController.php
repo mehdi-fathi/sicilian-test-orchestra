@@ -40,7 +40,6 @@ class CommentController extends BaseController
             'favorite_colors' => ['required', 'array']
         ];
 
-
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
