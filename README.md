@@ -1,4 +1,4 @@
-# Blind Fold Test
+# Sicilian Test Orchestra
 
 Sicilian Test Orchestra is an automated testing package designed for RESTful applications.
 It tests all routes with generated faker data to ensure comprehensive coverage and robustness of your application.
@@ -6,11 +6,12 @@ It tests all routes with generated faker data to ensure comprehensive coverage a
 a new way testing to close more user's behaviour. We never truncate database after a test.
 These days, we have to consider any senario and provide mock data in database for any senario.At the whole, Sometimes we
 can't consider all senario.
+
 Even if we considered all senario , Our code is changing every day. we have to update our testing either update mocking
-data or factory data. I think, although  
-we consider all user behavior and make all tests, we will see some reportable and unpredictable bugs. In addition, In
-old way, Every test would be run in encapsulated    
-space. It means others tests never impact on other test's process. While in real world, each of action has some
+data or factory data. I think, although we consider all user behavior and make all tests, we will see some reportable and unpredictable bugs. In addition, In
+old way, Every test would be run in encapsulated space.
+
+It means others tests never impact on other test's process. While in real world, each of action has some
 potential to impact other action.
 For this purpose, we need to provide data requirements , in old way.
 
