@@ -15,6 +15,10 @@ It means others tests never impact on other test's process. While in real world,
 potential to impact other action.
 For this purpose, we need to provide data requirements , in old way.
 
+The main different is this package is not supposed to assert status or response. This package just send request and show them response and status with other information to you.
+When you have 500 error in specifics senario, you are able to detect what's problem. Sometimes you have leaking data in an end-point in a specifics senario.
+So you can check all either response or status so that you make sure everything is ok. 
+
 THIS PACKAGE IS UNDER DEVELOPING
 
 ## Features
