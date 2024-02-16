@@ -32,7 +32,8 @@ class RequestStrategyList
                     'favorite_colors' => ['array'],
                 ],
                 'should_status' => 200,
-                'call' => 10,
+                'call' => 1,
+                'call_shuffle' => 5,
             ],
             [
                 'route' => 'list',
@@ -44,6 +45,7 @@ class RequestStrategyList
                     'should_see' => ['name'],
                 ],
                 'call' => 1,
+                'call_shuffle' => 2,
             ],
             [
                 'route' => 'list',
@@ -51,6 +53,7 @@ class RequestStrategyList
                 'data' => [],
                 'should_status' => 200,
                 'call' => 1,
+                'call_shuffle' => 2,
             ],
             [
                 'route' => 'show',
@@ -64,6 +67,7 @@ class RequestStrategyList
                 ],
                 'should_status' => 200,
                 'call' => 1,
+                'call_shuffle' => 2,
             ],
             [
                 'route' => 'destroy',
@@ -73,6 +77,7 @@ class RequestStrategyList
                 ],
                 'should_status' => 200,
                 'call' => 1,
+                'call_shuffle' => 2,
             ],
             [
                 'route' => 'show',
@@ -82,6 +87,8 @@ class RequestStrategyList
                 ],
                 'should_status' => 404,
                 'call' => 1,
+                'call_shuffle' => 2,
+
             ],
         ]
     ];

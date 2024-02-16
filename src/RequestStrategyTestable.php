@@ -51,6 +51,18 @@ trait RequestStrategyTestable
     public function processRoute($request)
     {
 
+        foreach ($request['next'] as $key => $item) {
+
+            if (!empty($item['call_shuffle'])) {
+
+                for ($i = 0; $i < $item['call_shuffle']; $i++) {
+                    $request['next'][] = $item;
+
+                }
+            }
+
+        }
+
         if ($request['shuffle_next']) {
             shuffle($request['next']);
         }
@@ -58,20 +70,19 @@ trait RequestStrategyTestable
         foreach ($request['next'] as $item) {
 
             $this->mockDataInner($item);
-            $this->processRequest($item['route'], $item['method'], $item['should_status'], $item['data'] ?? null, $item['call'], $item['see'] ?? []);
+            $this->processRequest($item['route'], $item['method'], $item['data'] ?? null, $item['call'], $item['see'] ?? []);
         }
     }
 
     /**
      * @param $route
      * @param $method
-     * @param $should_status
      * @param $data
      * @param int $call
-     * @param null $see
+     * @param array $see
      * @return void
      */
-    private function processRequest($route, $method, $should_status, $data, $call = 1, $see = [])
+    private function processRequest($route, $method, $data, $call = 1, $see = [])
     {
 
         for ($i = 0; $i < $call; $i++) {
