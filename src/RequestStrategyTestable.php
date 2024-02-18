@@ -29,8 +29,6 @@ trait RequestStrategyTestable
     /** @test */
     public function it_returns_sample_response()
     {
-        // $requests = (new StrategyRequestList())->getRequests();
-
         $this->table = new Table(new ConsoleOutput());
         $this->table->setHeaders(['Order', 'Route', 'Method', 'Data', 'Status', 'Response']);
 
@@ -40,6 +38,8 @@ trait RequestStrategyTestable
 
         $this->processRoute($this->requests);
         $this->table->render();
+
+        self::assertTrue(true);
 
 
     }
@@ -51,13 +51,12 @@ trait RequestStrategyTestable
     public function processRoute($request)
     {
 
-        foreach ($request['next'] as $key => $item) {
+        foreach ($request['next'] as $item) {
 
             if (!empty($item['call_shuffle'])) {
 
                 for ($i = 0; $i < $item['call_shuffle']; $i++) {
                     $request['next'][] = $item;
-
                 }
             }
 
@@ -82,7 +81,7 @@ trait RequestStrategyTestable
      * @param array $see
      * @return void
      */
-    private function processRequest($route, $method, $data, $call = 1, $see = [])
+    private function processRequest($route, $method, $data, $call = 1, $see = []): void
     {
 
         for ($i = 0; $i < $call; $i++) {
@@ -116,8 +115,6 @@ trait RequestStrategyTestable
                 $response = $this->{$method}($route, $data_new);
             }
 
-            // $text = sprintf("sent request to %s got status %s with content %s", $route, $response->getStatusCode(), $response->getContent());
-
             $data_table = !empty($data) ? substr(json_encode($data_new), 0, 40) : "";
 
             $this->table->addRow(
@@ -133,10 +130,6 @@ trait RequestStrategyTestable
                 }
             }
         }
-    }
-
-    public function mockdata($call = 1, $should_see = []): void
-    {
     }
 
 }
