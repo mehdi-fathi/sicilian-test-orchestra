@@ -9,3 +9,5 @@ Route::get('/delete/{id}', [\Tests\Tests\Controller\CommentController::class, 'd
 
 
 Route::post('/save', [\Tests\Tests\Controller\CommentController::class, 'save']);
+
+Route::put('/update/{id}', [\Tests\Tests\Controller\CommentController::class, 'update'])->name('update');

@@ -88,4 +88,10 @@ class CommentController extends BaseController
         return response()->json(['deleted']);
 
     }
+
+    // Update the specified resource in storage.
+    public function update($id)
+    {
+        return response()->json(['updated']);
+    }
 }

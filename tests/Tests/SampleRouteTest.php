@@ -136,6 +136,19 @@ class SampleRouteTest extends TestCase
 
             }
 
+            if (!empty($items['route']) && $items['route'] == 'update') {
+
+                \Mockery::resetContainer();
+
+                $mockPost1 = \Mockery::mock('overload:Tests\Tests\Model\Comment');
+
+                $mockPost1->shouldReceive('find')->with(1)->andReturn([]);
+
+                $mockPost1->shouldReceive('update')
+                    ->andReturn(true);
+
+            }
+
             if ($this->is_destroy && $items['route'] == 'show') {
 
                 \Mockery::resetContainer();

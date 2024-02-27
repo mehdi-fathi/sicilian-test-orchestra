@@ -36,6 +36,19 @@ class RequestStrategyList
                 'call_shuffle' => 5,
             ],
             [
+                'route' => 'update',
+                'method' => 'put',
+                'data' => [
+                    'body' => ['string', 'min:1', 'max:4'],
+                ],
+                'param' => [
+                    'id' => ['numeric', 'min:1', 'max:1']
+                ],
+                'should_status' => 200,
+                'call' => 1,
+                'call_shuffle' => 2,
+            ],
+            [
                 'route' => 'list',
                 'method' => 'get',
                 'data' => [],

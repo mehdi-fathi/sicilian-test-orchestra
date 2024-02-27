@@ -69,7 +69,7 @@ trait RequestStrategyTestable
         foreach ($request['next'] as $item) {
 
             $this->mockDataInner($item);
-            $this->processRequest($item['route'], $item['method'], $item['data'] ?? null, $item['call'], $item['see'] ?? []);
+            $this->processRequest($item['route'], $item['method'], $item['data'] ?? null, $item['call'], $item['see'] ?? [], $item['param'] ?? []);
         }
     }
 
@@ -79,17 +79,22 @@ trait RequestStrategyTestable
      * @param $data
      * @param int $call
      * @param array $see
+     * @param $param
      * @return void
      */
-    private function processRequest($route, $method, $data, $call = 1, $see = []): void
+    private function processRequest($route, $method, $data, $call = 1, $see = [], $param = []): void
     {
 
         for ($i = 0; $i < $call; $i++) {
 
-            $data_new = [];
+            $data_new = $param_new = [];
             if (!empty($data)) {
                 $data_new = $this->fakeData->generateFakeData($data);
                 $this->data[$route] = $data_new;
+            }
+
+            if (!empty($param)) {
+                $param_new = $this->fakeData->generateFakeData($param);
             }
 
             $this->orderCount = $this->orderCount + 1;
@@ -109,6 +114,10 @@ trait RequestStrategyTestable
                 $route_req = route($route, $data_new ?? []);
 
                 $response = $this->get($route_req);
+
+            } elseif ($method == 'put') {
+
+                $response = $this->put(route($route, $param_new), $data_new);
 
             } else {
 
