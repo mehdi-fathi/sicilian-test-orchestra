@@ -26,29 +26,37 @@ THIS PACKAGE IS UNDER DEVELOPING
 
 ## Main goals
 
-- **Reaching a realistic tests**: users have been sending hundreds of requests would lead to some specific conditions
-  which might be hide completely. For instance, a user should get a new badge when the one visit 10 different posts with
-  at least 5 count of like them. ok you arre able to make a test for this purpose like old way. but what if tha user was
-  limited already?
-  did you consider that? ok you can make a test for this as well. but what if the user dislike a post? whether keep the
-  badge?
-  You see there would be a lot of complicated conditions that would come across 400 error or wrong way. 
-  We honor in Provided a new way to test all facets.
+### Reaching a realistic tests
 
-- **Being aware of other actions impacts**: Since you have been running all tests in isolated method, what if an action
-  would impact
-  others badly? For instance, a user make a comment first time and delete that in a soft delete way then user click on
-  profile menu where
-  we're showing a number of comments, but we got 500 error. So are we able to consider this in testing? Assuming we
-  consider
-  all possible senarios in details. What if we change something in model? We need to update and check all tests again.
-  It's time-consuming approach.``
+users have been sending hundreds of requests would lead to some specific conditions
+which might be hide completely. For instance, a user should get a new badge when the one visit 10 different posts with
+at least 5 count of like them. ok you arre able to make a test for this purpose like old way. but what if tha user was
+limited already?
+did you consider that? ok you can make a test for this as well. but what if the user dislike a post? whether keep the
+badge?
+You see there would be a lot of complicated conditions that would come across 400 error or wrong way.
+We honor in Provided a new way to test all facets.
 
-- **Detailed Reporting**: All senarios has been saved in db with request ,response and etc. furthermore you're able
-  to re-run some specific senarios.
+### Being aware of other actions impacts
 
-- **keeping data in db**: We keep data in database because we believe in those are usefully to debug or check the way of
-  saving or updating.
+Since you have been running all tests in isolated method, what if an action
+would impact
+others badly? For instance, a user make a comment first time and delete that in a soft delete way then user click on
+profile menu where
+we're showing a number of comments, but we got 500 error. So are we able to consider this in testing? Assuming we
+consider
+all possible senarios in details. What if we change something in model? We need to update and check all tests again.
+It's time-consuming approach.``
+
+### Detailed Reporting
+
+All senarios has been saved in db with request ,response and etc. furthermore you're able
+to re-run some specific senarios.
+
+### keeping data in db
+
+We keep data in database because we believe in those are usefully to debug or check the way of
+saving or updating.
 
 ## Features
 
