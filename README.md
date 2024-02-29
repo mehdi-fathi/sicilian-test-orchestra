@@ -1,26 +1,23 @@
 # Sicilian Test Orchestra
 
-Sicilian Test Orchestra is an automated testing package designed for RESTful applications.
-It tests all routes with generated faker data to ensure comprehensive coverage and robustness of your application.
+Sicilian Test Orchestra is an automated testing package designed for RESTful applications. It tests all routes with
+generated faker data to ensure comprehensive coverage and robustness of your application.
 
-a new way testing to close more user's behaviour. We never truncate database after a test.
-These days, we have to consider any senario and provide mock data in database for any senario. At the whole, Sometimes
-we can't consider all senario.
+A new way of testing to closely mimic user behavior. We never truncate the database after a test. These days, we have to
+consider any scenario and provide mock data in the database for any scenario. At whole, sometimes we can't consider all
+scenarios.``
 
-Even if we considered all senario , Our code is changing every day. we have to update our testing either update mocking
-data or factory data. I think, although we consider all user behavior and make all tests, we will see some reportable
-and unpredictable bugs. In addition, In
-old way, Every test would be run in encapsulated space.
+Even if we considered all scenarios, our code is changing every day. We have to update our testing, either updating
+mocking data or factory data. I think, although we consider all user behavior and run all tests, we will encounter some
+reportable and unpredictable bugs. In addition, in the old way, every test would run in an encapsulated space.
 
-It means others tests never impact on other test's process. While in real world, each of action has some
-potential to impact other action.
-For this purpose, we need to provide data requirements , in old way.
+It means other tests never impact on other test's processes. While in the real world, each action has the potential to
+impact other actions. For this purpose, we need to provide data requirements, in the old way.
 
-The main different is this package is not supposed to assert status or response. This package just send request and show
-them response and status with other information to you.
-When you have 500 error in specifics senario, you are able to detect what's problem. Sometimes you have leaking data in
-an end-point in a specifics senario.
-So you can check all either response or status so that you make sure everything is ok.
+The main difference is this package is not supposed to assert status or response. This package just sends requests and
+shows the response and status with other information to you. When you have a 500 error in a specific scenario, you are
+able to detect what's the problem. Sometimes you have leaking data in an endpoint in a specific scenario. So you can
+check either response or status to make sure everything is ok.
 
 THIS PACKAGE IS UNDER DEVELOPING
 
@@ -28,35 +25,30 @@ THIS PACKAGE IS UNDER DEVELOPING
 
 ### Reaching a realistic tests
 
-users have been sending hundreds of requests would lead to some specific conditions
-which might be hide completely. For instance, a user should get a new badge when the one visit 10 different posts with
-at least 5 count of like them. ok you arre able to make a test for this purpose like old way. but what if tha user was
-limited already?
-did you consider that? ok you can make a test for this as well. but what if the user dislike a post? whether keep the
-badge?
-You see there would be a lot of complicated conditions that would come across 400 error or wrong way.
-We honor in Provided a new way to test all facets.
+Users sending hundreds of requests would lead to some specific conditions which might be hidden completely. For
+instance, a user should get a new badge when they visit 10 different posts with at least 5 likes on each of them. Okay,
+you are able to make a test for this purpose in the old way, but what if the user was already limited? Did you consider
+that? Okay, you can make a test for this as well, but what if the user dislikes a post? Should they still keep the
+badge? You see, there would be a lot of complicated conditions that would lead to a 400 error or a wrong outcome. We aim
+to provide a new way to test all facets comprehensively.
 
 ### Being aware of other actions impacts
 
-Since you have been running all tests in isolated method, what if an action
-would impact
-others badly? For instance, a user make a comment first time and delete that in a soft delete way then user click on
-profile menu where
-we're showing a number of comments, but we got 500 error. So are we able to consider this in testing? Assuming we
-consider
-all possible senarios in details. What if we change something in model? We need to update and check all tests again.
-It's time-consuming approach.``
+Since you have been running all tests in an isolated method, what if an action would impact others badly? For instance,
+a user makes a comment for the first time and then deletes it in a soft delete way. Then, the user clicks on the profile
+menu where we're showing the number of comments, but we get a 500 error. So, are we able to consider this in testing?
+Assuming we consider all possible scenarios in detail. What if we change something in the model? We need to update and
+check all tests again. It's a time-consuming approach.
 
 ### Detailed Reporting
 
-All senarios has been saved in db with request ,response and etc. furthermore you're able
-to re-run some specific senarios.
+All scenarios have been saved in the database with requests, responses, etc. Furthermore, you're able to rerun specific
+scenarios.
 
-### Keeping data in db
+### Keeping data in the DB
 
-We keep data in database because we believe in those are usefully to debug or check the way of
-saving or updating.
+We keep data in the database because we believe that it is useful for debugging or checking the way of saving or
+updating.
 
 ## Features
 
