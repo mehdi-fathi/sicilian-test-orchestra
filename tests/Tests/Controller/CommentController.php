@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Tests\Tests\Model\Comment;
 
@@ -19,10 +20,10 @@ class CommentController extends BaseController
 
     public function list()
     {
-        $activeUsers = User::get();
+        $comments = Comment::query()->get();
 
         // If you're building an API, you might return JSON:
-        return response()->json(['users' => $activeUsers]);
+        return response()->json(['users' => $comments]);
         // dd($this->data);
         // return response()->json($this->data, 200);
     }
@@ -40,12 +41,21 @@ class CommentController extends BaseController
             'favorite_colors' => ['required', 'array']
         ];
 
+
         $validator = Validator::make($request->all(), $rules);
 
         if ($validator->fails()) {
             // Alternatively, you can return the errors as a response
             return response()->json(['errors' => $validator->errors()], 422);
         }
+
+        $comment = new Comment();
+
+        $comment->body = $request->get('body');
+
+        $comment->user_id = 1;
+
+        $comment->save();
 
         return 'This is a sample controller response';
     }

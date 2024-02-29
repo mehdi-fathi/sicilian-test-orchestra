@@ -25,6 +25,7 @@ class RequestStrategyList
                 'method' => 'post',
                 'data' => [
                     'name' => ['string', 'min:1', 'max:4'],
+                    'body' => ['string', 'min:1', 'max:4'],
                     'email' => ['email', 'min:1', 'max:40'],
                     'from_date' => ['date', 'from:', 'to:'], //todo set from & to
                     'age' => ['numeric', 'min:1', 'max:8'],

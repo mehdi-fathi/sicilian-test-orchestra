@@ -124,10 +124,11 @@ trait RequestStrategyTestable
                 $response = $this->{$method}($route, $data_new);
             }
 
-            $data_table = !empty($data) ? substr(json_encode($data_new), 0, 40) : "";
+            $data_table = !empty($data) ? substr(json_encode($data_new), 0, 20) : "";
+            $content = !empty($response->getContent()) ? substr($response->getContent(), 0, 40) : "";
 
             $this->table->addRow(
-                [$this->orderCount, $route, $method, $data_table, $response->getStatusCode(), $response->getContent()],
+                [$this->orderCount, $route, $method, $data_table, $response->getStatusCode(), $content],
             );
 
             // $response->assertStatus($should_status);
