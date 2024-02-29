@@ -53,7 +53,7 @@ It's time-consuming approach.``
 All senarios has been saved in db with request ,response and etc. furthermore you're able
 to re-run some specific senarios.
 
-### keeping data in db
+### Keeping data in db
 
 We keep data in database because we believe in those are usefully to debug or check the way of
 saving or updating.
