@@ -23,7 +23,7 @@ THIS PACKAGE IS UNDER DEVELOPING
 
 ## Main goals
 
-### Reaching a realistic tests
+### Reaching realistic tests
 
 Users sending hundreds of requests would lead to some specific conditions which might be hidden completely. For
 instance, a user should get a new badge when they visit 10 different posts with at least 5 likes on each of them. Okay,
