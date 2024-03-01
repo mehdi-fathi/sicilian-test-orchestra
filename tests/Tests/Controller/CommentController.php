@@ -3,7 +3,6 @@
 namespace Tests\Tests\Controller;
 
 
-use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -12,35 +11,47 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Tests\Tests\Model\Comment;
 
+/**
+ *
+ */
 class CommentController extends BaseController
 {
 
     use AuthorizesRequests;
     use ValidatesRequests;
 
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function list()
     {
-        $comments = Comment::query()->get();
+        $comments = Comment::query()->paginate();
 
         // If you're building an API, you might return JSON:
-        return response()->json(['users' => $comments]);
+        return response()->json(['comments' => $comments]);
         // dd($this->data);
         // return response()->json($this->data, 200);
     }
 
 
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function save(Request $request)
     {
-        // dump($request->get('name'));
         $rules = [
-            'name' => ['required', 'string', 'min:1', 'max:4'],
-            'email' => ['required', 'email', 'min:1', 'max:40'],
-            'from_date' => ['required', 'date'],
-            'age' => ['required', 'numeric', 'min:1', 'max:8'],
-            'has_job' => ['required', 'boolean'],
-            'favorite_colors' => ['required', 'array']
+            'body' => ['required', 'string', 'min:1', 'max:40'],
         ];
 
+        // $rules = [
+        //     'name' => ['required', 'string', 'min:1', 'max:4'],
+        //     'email' => ['required', 'email', 'min:1', 'max:40'],
+        //     'from_date' => ['required', 'date'],
+        //     'age' => ['required', 'numeric', 'min:1', 'max:8'],
+        //     'has_job' => ['required', 'boolean'],
+        //     'favorite_colors' => ['required', 'array']
+        // ];
 
         $validator = Validator::make($request->all(), $rules);
 
@@ -53,15 +64,21 @@ class CommentController extends BaseController
 
         $comment->body = $request->get('body');
 
-        $comment->user_id = 1;
+        $comment->user_id = auth()->id();
 
         $comment->save();
 
-        return 'This is a sample controller response';
+        return response()->json(['message' => 'The comment has been saved.']);
+
     }
 
 
     // Display the specified resource.
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Foundation\Application|\Illuminate\Http\JsonResponse|\Illuminate\Http\Response
+     */
     public function show($id)
     {
         $comment = Comment::find($id);
@@ -92,6 +109,10 @@ class CommentController extends BaseController
     // }
     //
     // // Remove the specified resource from storage.
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function destroy($id)
     {
         $comment = Comment::destroy($id);
@@ -100,6 +121,11 @@ class CommentController extends BaseController
     }
 
     // Update the specified resource in storage.
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update($id)
     {
         return response()->json(['updated']);

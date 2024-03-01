@@ -4,6 +4,7 @@ namespace SicilianTestOrchestra;
 
 
 use App\Http\Requests\UserPreferenceStoreRequest;
+use App\Models\User;
 use SicilianTestOrchestra\FakerrData;
 use SicilianTestOrchestra\Request\StrategyRequestList;
 use SicilianTestOrchestra\SampleController;
@@ -50,6 +51,10 @@ trait RequestStrategyTestable
      */
     public function processRoute($request)
     {
+
+        if (in_array('auth', $request['user_login'])) {
+            $this->signIn();
+        }
 
         foreach ($request['next'] as $item) {
 
@@ -127,8 +132,18 @@ trait RequestStrategyTestable
             $data_table = !empty($data) ? substr(json_encode($data_new), 0, 20) : "";
             $content = !empty($response->getContent()) ? substr($response->getContent(), 0, 40) : "";
 
+            $status = $response->getStatusCode();
+            if ($status == 404) {
+                $status = "\033[38;5;208m$status\033[0m";
+            } elseif ($status >= 500) {
+                $status = "\033[31m$status\033[0m";
+            } elseif ($status == 200) {
+                $status = "\033[32m$status\033[0m";
+
+            }
+
             $this->table->addRow(
-                [$this->orderCount, $route, $method, $data_table, $response->getStatusCode(), $content],
+                [$this->orderCount, $route, $method, $data_table, $status, $content],
             );
 
             // $response->assertStatus($should_status);
@@ -141,5 +156,40 @@ trait RequestStrategyTestable
             }
         }
     }
+
+    /**
+     * @param \App\Models\User|null $user
+     * @return $this
+     */
+    protected function signIn($user = null)
+    {
+        $user = $user ?: $this->create(User::class);
+
+        $user->saveQuietly();
+
+        $this->actingAs($user);
+
+        return $this;
+    }
+
+    /**
+     * @param $class
+     * @param array $attributes
+     * @param null $times
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|mixed
+     */
+    function create($class, $attributes = [], $times = null)
+    {
+        if ($class == \App\Models\User::class) {
+            if ($times) {
+                return $class::factory()->count($times)->create($attributes);
+            } else {
+                return $class::factory()->create($attributes);
+            }
+        }
+
+        return factory($class, $times)->create($attributes);
+    }
+
 
 }
