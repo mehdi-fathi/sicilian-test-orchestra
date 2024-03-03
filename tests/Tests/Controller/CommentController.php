@@ -27,10 +27,7 @@ class CommentController extends BaseController
     {
         $comments = Comment::query()->paginate();
 
-        // If you're building an API, you might return JSON:
-        return response()->json(['comments' => $comments]);
-        // dd($this->data);
-        // return response()->json($this->data, 200);
+        return response()->json(['data' => $comments]);
     }
 
 
@@ -85,7 +82,7 @@ class CommentController extends BaseController
         if (empty($comment)) {
             return response('', 404);
         }
-        return response()->json(['comment' => $comment]);
+        return response()->json(['data' => $comment]);
     }
 
     //
@@ -128,6 +125,24 @@ class CommentController extends BaseController
      */
     public function update($id)
     {
-        return response()->json(['updated']);
+
+        $rules = [
+            'body' => ['required', 'string', 'min:1', 'max:40'],
+        ];
+
+        $validator = Validator::make(request()->all(), $rules);
+
+        if ($validator->fails()) {
+            // Alternatively, you can return the errors as a response
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $comment = Comment::query()->findOrFail($id);
+
+        $comment->body = request()->get('body');
+
+        $comment->save();
+
+        return response()->json(['message' => 'The comment has been updated successfully.']);
     }
 }
