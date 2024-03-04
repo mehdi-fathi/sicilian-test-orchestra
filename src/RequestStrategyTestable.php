@@ -74,7 +74,13 @@ trait RequestStrategyTestable
         foreach ($request['next'] as $item) {
 
             $this->mockDataInner($item);
-            $this->processRequest($item['route'], $item['method'], $item['data'] ?? null, $item['call'], $item['see'] ?? [], $item['param'] ?? []);
+            $this->processRequest(
+                route: $item['route'],
+                method: $item['method'],
+                data: $item['data'] ?? null,
+                call: $item['call'],
+                see: $item['see'] ?? [],
+                param: $item['param'] ?? []);
         }
     }
 
@@ -84,10 +90,10 @@ trait RequestStrategyTestable
      * @param $data
      * @param int $call
      * @param array $see
-     * @param $param
+     * @param array $param
      * @return void
      */
-    private function processRequest($route, $method, $data, $call = 1, $see = [], $param = []): void
+    private function processRequest($route, $method, $data, int $call = 1, array $see = [], array $param = []): void
     {
 
         for ($i = 0; $i < $call; $i++) {
