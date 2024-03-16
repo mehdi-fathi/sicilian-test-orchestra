@@ -136,7 +136,7 @@ trait RequestStrategyTestable
             }
 
             $data_table = !empty($data) ? substr(json_encode($data_new), 0, 20) : "";
-            $content = !empty($response->getContent()) ? substr($response->getContent(), 0, 20) : "";
+            $content = !empty($response->getContent()) ? substr($response->getContent(), 0, 40) : "";
 
             $status = $response->getStatusCode();
             if ($status == 404) {

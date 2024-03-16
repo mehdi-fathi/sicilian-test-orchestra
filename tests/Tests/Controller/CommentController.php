@@ -137,12 +137,21 @@ class CommentController extends BaseController
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $comment = Comment::query()->findOrFail($id);
+        try {
+            $comment = Comment::query()->findOrFail($id);
+
+        } catch (\Throwable $e) {
+
+            return response()->json(['message' => 'Not found'], 404);
+
+        }
 
         $comment->body = request()->get('body');
 
         $comment->save();
 
         return response()->json(['message' => 'The comment has been updated successfully.']);
+
+
     }
 }
