@@ -4,6 +4,7 @@ namespace SicilianTestOrchestra;
 
 
 use App\Http\Requests\UserPreferenceStoreRequest;
+use App\Models\ReportTest;
 use App\Models\User;
 use SicilianTestOrchestra\FakerrData;
 use SicilianTestOrchestra\Request\StrategyRequestList;
@@ -28,6 +29,24 @@ trait RequestStrategyTestable
     private $fakeData;
 
     protected $request;
+
+    protected $reportId;
+
+    /**
+     * @param mixed $reportId
+     */
+    public function setReportId($reportId)
+    {
+        $this->reportId = $reportId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReportId()
+    {
+        return $this->reportId;
+    }
 
     /**
      * @param mixed $request
@@ -74,6 +93,8 @@ trait RequestStrategyTestable
         $this->table->setHeaderTitle('Test ');
 
         $this->table->setStyle('default');
+
+        $this->setReportId(strtotime(now()));
 
         $this->processRoute($this->requests);
         $this->table->render();
@@ -139,44 +160,52 @@ trait RequestStrategyTestable
 
             if ($method == 'get') {
 
-                $route_req = route($route, $data_new ?? []);
+                $uri = route($route, $data_new ?? []);
 
-                $response = $this->get($route_req);
+                $response = $this->get($uri);
 
             } elseif ($method == 'put') {
+                $uri = route($route, $param_new);
 
-                $response = $this->put(route($route, $param_new), $data_new);
+                $response = $this->put($uri, $data_new);
 
             } else {
+
+                $uri = $route;
 
                 $response = $this->{$method}($route, $data_new);
             }
 
             $data_table = !empty($data) ? substr(json_encode($data_new), 0, 20) : "";
-            $content = !empty($response->getContent()) ? substr($response->getContent(), 0, 40) : "";
+
+            $response_body = $response->getContent();
+
+            $mini_content = !empty($response_body) ? substr($response_body, 0, 40) : "";
 
             $status = $response->getStatusCode();
+
             if ($status == 404) {
-                $status = "\033[38;5;208m$status\033[0m";
+                $status_command = "\033[38;5;208m$status\033[0m";
             } elseif ($status >= 500) {
-                $status = "\033[31m$status\033[0m";
+                $status_command = "\033[31m$status\033[0m";
             } elseif ($status == 200) {
-                $status = "\033[32m$status\033[0m";
+                $status_command = "\033[32m$status\033[0m";
 
             }
+
+            ReportTest::query()->forceCreate([
+                'report_id' => $this->getReportId(),
+                'order' => $this->orderCount,
+                'route' => $route,
+                'method' => $method,
+                'request' => $data_table,
+                'status' => (int)$status,
+                'response' => $response_body,
+            ]);
 
             $this->table->addRow(
-                [$this->orderCount, $route, $method, $data_table, $status, $content],
+                [$this->orderCount, $route, $method, $data_table, $status_command, $mini_content],
             );
-
-            // $response->assertStatus($should_status);
-
-            if (!empty($see)) {
-
-                if (!empty($name)) {
-                    // $response->assertSee($name);
-                }
-            }
         }
     }
 
