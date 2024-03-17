@@ -11,7 +11,7 @@ use SicilianTestOrchestra\SampleController;
 use Tests\TestCase;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use Tests\Tests\Models\ReportTest;
+use Tests\Tests\Model\ReportTest;
 
 /**
  *
