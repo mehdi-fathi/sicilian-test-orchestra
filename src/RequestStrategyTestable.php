@@ -4,7 +4,6 @@ namespace SicilianTestOrchestra;
 
 
 use App\Http\Requests\UserPreferenceStoreRequest;
-use App\Models\ReportTest;
 use App\Models\User;
 use SicilianTestOrchestra\FakerrData;
 use SicilianTestOrchestra\Request\StrategyRequestList;
@@ -12,6 +11,7 @@ use SicilianTestOrchestra\SampleController;
 use Tests\TestCase;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Tests\Tests\Models\ReportTest;
 
 /**
  *
