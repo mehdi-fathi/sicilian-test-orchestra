@@ -27,6 +27,44 @@ trait RequestStrategyTestable
 
     private $fakeData;
 
+    protected $request;
+
+    /**
+     * @param mixed $request
+     */
+    public function setRequest($request)
+    {
+        $this->request = $request;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRequest($key)
+    {
+        return $this->request[$key];
+    }
+
+
+    /**
+     * @param $key
+     * @param $data
+     */
+    public function setRequestKey($key, $data)
+    {
+        $this->request[$key] = $data;
+    }
+
+    /**
+     * @param $key
+     * @param $data
+     */
+    public function setRequestKeyPush($key, $data)
+    {
+        $this->request[$key][] = $data;
+    }
+
+
     /** @test */
     public function it_returns_sample_response()
     {
@@ -52,36 +90,15 @@ trait RequestStrategyTestable
     public function processRoute($request)
     {
 
-        if (in_array('auth', $request['user_login'])) {
+        $this->setRequest($request);
+
+        if (in_array('auth', $this->getRequest('user_login'))) {
             $this->signIn();
         }
 
-        foreach ($request['next'] as $item) {
+        $this->makeCallShuffle();
 
-            if (!empty($item['call_shuffle'])) {
-
-                for ($i = 0; $i < $item['call_shuffle']; $i++) {
-                    $request['next'][] = $item;
-                }
-            }
-
-        }
-
-        if ($request['shuffle_next']) {
-            shuffle($request['next']);
-        }
-
-        foreach ($request['next'] as $item) {
-
-            $this->mockDataInner($item);
-            $this->processRequest(
-                route: $item['route'],
-                method: $item['method'],
-                data: $item['data'] ?? null,
-                call: $item['call'],
-                see: $item['see'] ?? [],
-                param: $item['param'] ?? []);
-        }
+        $this->sendRequests();
     }
 
     /**
@@ -195,6 +212,48 @@ trait RequestStrategyTestable
         }
 
         return factory($class, $times)->create($attributes);
+    }
+
+    /**
+     * @return mixed
+     */
+    private function makeCallShuffle()
+    {
+        foreach ($this->getRequest('next') as $item) {
+
+            if (!empty($item['call_shuffle'])) {
+
+                for ($i = 0; $i < $item['call_shuffle']; $i++) {
+                    $this->setRequestKeyPush('next', $item);
+                }
+            }
+        }
+
+        if ($this->getRequest('shuffle_next')) {
+            $next = $this->getRequest('next');
+            shuffle($next);
+            $this->setRequestKey('next', $next);
+        }
+
+    }
+
+    /**
+     * @return void
+     */
+    private function sendRequests(): void
+    {
+        foreach ($this->getRequest('next') as $item) {
+
+            $this->mockDataInner($item);
+
+            $this->processRequest(
+                route: $item['route'],
+                method: $item['method'],
+                data: $item['data'] ?? null,
+                call: $item['call'],
+                see: $item['see'] ?? [],
+                param: $item['param'] ?? []);
+        }
     }
 
 
