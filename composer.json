@@ -1,5 +1,5 @@
 {
-    "name": "mehdi/sicilian-test-orchestra",
+    "name": "mehdi-fathi/sicilian-test-orchestra",
     "description": "An efficient composer package to test all of your routes with send request to make sure all things works well",
     "type": "library",
     "autoload": {
