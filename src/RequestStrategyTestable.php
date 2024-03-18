@@ -84,7 +84,7 @@ trait RequestStrategyTestable
 
 
     /** @test */
-    public function it_returns_sample_response()
+    public function test_all_routes_sicilian_test_orchetra_response()
     {
         $this->table = new Table(new ConsoleOutput());
         $this->table->setHeaders(['Order', 'Route', 'Method', 'Data', 'Status', 'Response']);
