@@ -97,7 +97,7 @@ trait RequestStrategyTestable
 
         $this->setReportId(strtotime(now()));
 
-        $this->processRoute($this->requests);
+        $this->processRoute($this->testOrchestraRequests);
         $this->table->render();
 
         self::assertTrue(true);
