@@ -4,7 +4,7 @@ namespace Tests;
 
 
 use App\Http\Requests\UserPreferenceStoreRequest;
-use SicilianTestOrchestra\FakerrData;
+use SicilianTestOrchestra\FakerData;
 use SicilianTestOrchestra\RequestStrategyTestable;
 use Tests\Tests\Model\Comment;
 use Tests\Tests\Request\RequestStrategyList;
@@ -17,9 +17,8 @@ class SampleRouteTest extends TestCase
     use RequestStrategyTestable;
 
     private $data;
-    private $requests;
+    private $testOrchestraRequests;
 
-    private $fakeData;
 
     private $is_destroy = false;
 
@@ -30,8 +29,7 @@ class SampleRouteTest extends TestCase
     {
         parent::__construct();
 
-        $this->fakeData = new FakerrData();
-        $this->requests = (new RequestStrategyList())->getRequests();
+        $this->testOrchestraRequests = (new RequestStrategyList())->getRequests();
     }
 
     public function mockdata($data, $request, $route)

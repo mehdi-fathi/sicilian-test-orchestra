@@ -11,7 +11,7 @@ use Tests\Tests\Controller\Request\RequestTest;
 /**
  *
  */
-class FakerrData
+class FakerData
 {
     /**
      * @var \Faker\Generator

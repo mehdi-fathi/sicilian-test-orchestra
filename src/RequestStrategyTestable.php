@@ -5,7 +5,6 @@ namespace SicilianTestOrchestra;
 
 use App\Http\Requests\UserPreferenceStoreRequest;
 use App\Models\User;
-use SicilianTestOrchestra\FakerrData;
 use SicilianTestOrchestra\Request\StrategyRequestList;
 use SicilianTestOrchestra\SampleController;
 use Tests\TestCase;
@@ -90,6 +89,8 @@ trait RequestStrategyTestable
         $this->table = new Table(new ConsoleOutput());
         $this->table->setHeaders(['Order', 'Route', 'Method', 'Data', 'Status', 'Response']);
 
+        $this->fakeData = new FakerData();
+
         $this->table->setHeaderTitle('Test ');
 
         $this->table->setStyle('default');
@@ -127,11 +128,10 @@ trait RequestStrategyTestable
      * @param $method
      * @param $data
      * @param int $call
-     * @param array $see
      * @param array $param
      * @return void
      */
-    private function processRequest($route, $method, $data, int $call = 1, array $see = [], array $param = []): void
+    private function processRequest($route, $method, $data, int $call = 1, array $param = []): void
     {
 
         for ($i = 0; $i < $call; $i++) {
@@ -147,16 +147,6 @@ trait RequestStrategyTestable
             }
 
             $this->orderCount = $this->orderCount + 1;
-
-            if (!empty($see)) {
-
-                $name = [];
-                foreach ($see['should_see'] as $item) {
-                    if (!empty($this->data[$see['pre_route']])) {
-                        $name[] = $this->data[$see['pre_route']][$item];
-                    }
-                }
-            }
 
             if ($method == 'get') {
 
@@ -280,7 +270,6 @@ trait RequestStrategyTestable
                 method: $item['method'],
                 data: $item['data'] ?? null,
                 call: $item['call'],
-                see: $item['see'] ?? [],
                 param: $item['param'] ?? []);
         }
     }
