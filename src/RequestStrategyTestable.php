@@ -91,7 +91,7 @@ trait RequestStrategyTestable
 
         $this->fakeData = new FakerData();
 
-        $this->table->setHeaderTitle('Test ');
+        $this->table->setHeaderTitle('Sicilian Test Orchestra');
 
         $this->table->setStyle('default');
 
