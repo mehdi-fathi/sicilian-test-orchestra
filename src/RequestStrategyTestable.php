@@ -263,7 +263,7 @@ trait RequestStrategyTestable
     {
         foreach ($this->getRequest('next') as $item) {
 
-            $this->mockDataInner($item);
+            $this->mockDataInner();
 
             $this->processRequest(
                 route: $item['route'],
@@ -272,6 +272,15 @@ trait RequestStrategyTestable
                 call: $item['call'],
                 param: $item['param'] ?? []);
         }
+    }
+
+
+    /**
+     * @return void
+     */
+    public function mockDataInner()
+    {
+        return;
     }
 
 

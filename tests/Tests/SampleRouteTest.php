@@ -16,11 +16,10 @@ class SampleRouteTest extends TestCase
 {
     use RequestStrategyTestable;
 
-    private $data;
-    private $testOrchestraRequests;
-
-
-    private $is_destroy = false;
+    /**
+     * @var array|mixed
+     */
+    private mixed $testOrchestraRequests;
 
     /**
      *
@@ -31,32 +30,5 @@ class SampleRouteTest extends TestCase
 
         $this->testOrchestraRequests = (new RequestStrategyList())->getRequests();
     }
-
-    public function mockdata($data, $request, $route)
-    {
-
-        $method = $request['method'];
-
-        if (!empty($method)) {
-
-            $this->mockDataInner($request);
-            foreach ($request['next'] as $item) {
-                $this->mockDataInner($item);
-            }
-        }
-
-    }
-
-    /**
-     * @param $items
-     * @return void
-     */
-    public function mockDataInner($items): void
-    {
-        return ;
-    }
-
-
-    //
 
 }
