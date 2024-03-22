@@ -178,7 +178,7 @@ class ExampleTest extends TestCase
 
 ## Contributing
 
-We welcome contributions to the Blind Fold Test package. Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details
+We welcome contributions to the Sicilian Test Orchestra package. Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details
 on our code of conduct and the process for submitting pull requests.
 
 ## License
