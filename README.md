@@ -61,7 +61,7 @@ updating.
 ## Requirements
 
 - PHP 8.x or above
-- Laravel 8.x
+- Laravel >= 8.x
 
 1- Run the following command in your project directory to add the Eloquent Filter as a dependency
 
