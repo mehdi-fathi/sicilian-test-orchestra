@@ -5,7 +5,7 @@ generated faker data to ensure comprehensive coverage and robustness of your app
 
 A new way of testing to closely mimic user behavior. We never truncate the database after a test. These days, we have to
 consider any scenario and provide mock data in the database for any scenario. At whole, sometimes we can't consider all
-scenarios.``
+scenarios.
 
 Even if we considered all scenarios, our code is changing every day. We have to update our testing, either updating
 mocking data or factory data. I think, although we consider all user behavior and run all tests, we will encounter some
@@ -62,6 +62,119 @@ updating.
 
 - PHP 7.x or above
 - Laravel 8.x
+
+1- Run the following command in your project directory to add the Eloquent Filter as a dependency
+
+        $ composer require mehdi-fathi/sicilian-test-orchestra
+
+2- Add `SicilianTestOrchestra\SicilianTestOrchestraServiceProvider::class` to provider app.php
+
+   ```php
+   'providers' => [
+     /*
+      * Package Service Providers...
+      */
+      SicilianTestOrchestra\SicilianTestOrchestraServiceProvider::class
+   ]
+   ```
+
+3- Run this command to create migration report_tests table.
+
+    php artisan vendor:publish --tag=migrations
+
+3- Use trait `RequestStrategyTestable` in feature test like this:
+
+```php
+
+namespace Tests\Feature;
+
+use SicilianTestOrchestra\RequestStrategyTestable;
+use Tests\TestCase;
+
+class ExampleTest extends TestCase
+{
+
+    use RequestStrategyTestable;
+
+    protected array $testOrchestraRequests = [
+        'user_login' => ['auth'],  //auth,quest
+        'shuffle_next' => true,
+        'next' => [
+            [
+                'route' => 'save',
+                'method' => 'post',
+                'data' => [
+                    // 'name' => ['string', 'min:1', 'max:4'],
+                    'body' => ['string', 'min:1', 'max:4'],
+                    // 'email' => ['email', 'min:1', 'max:40'],
+                    // 'from_date' => ['date'], 
+                    // 'age' => ['numeric', 'min:1', 'max:8'],
+                    // 'has_job' => ['boolean'],
+                    // 'favorite_colors' => ['array'],
+                ],
+                'call' => 1,
+                'call_shuffle' => 5,
+            ],
+            [
+                'route' => 'update',
+                'method' => 'put',
+                'data' => [
+                    'body' => ['string', 'min:1', 'max:4'],
+                ],
+                'param' => [
+                    'id' => ['numeric', 'min:1', 'max:1']
+                ],
+                'call' => 1,
+                'call_shuffle' => 2,
+            ],
+            [
+                'route' => 'list',
+                'method' => 'get',
+                'data' => [],
+                'call' => 1,
+                'call_shuffle' => 2,
+            ],
+            [
+                'route' => 'list',
+                'method' => 'get',
+                'data' => [],
+                'call' => 1,
+                'call_shuffle' => 2,
+            ],
+            [
+                'route' => 'show',
+                'method' => 'get',
+                'data' => [
+                    'id' => ['numeric', 'min:1', 'max:1']
+                ],
+                'call' => 1,
+                'call_shuffle' => 2,
+            ],
+            [
+                'route' => 'destroy',
+                'method' => 'get',
+                'data' => [
+                    'id' => ['numeric', 'min:1', 'max:1']
+                ],
+                'call' => 1,
+                'call_shuffle' => 2,
+            ],
+            [
+                'route' => 'show',
+                'method' => 'get',
+                'data' => [
+                    'id' => ['numeric', 'min:1', 'max:1']
+                ],
+                'call' => 1,
+                'call_shuffle' => 2,
+
+            ],
+        ]
+    ];
+    
+
+
+```
 
 ## Contributing
 
