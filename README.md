@@ -19,8 +19,6 @@ shows the response and status with other information to you. When you have a 500
 able to detect what's the problem. Sometimes you have leaking data in an endpoint in a specific scenario. So you can
 check either response or status to make sure everything is ok.
 
-THIS PACKAGE IS UNDER DEVELOPING
-
 ## Main goals
 
 ### Reaching realistic tests
@@ -176,6 +174,14 @@ class ExampleTest extends TestCase
 
 ```
 
+## About Sicilian Test Orchestra in detail
+
+Since this package is really young, I want to foster that gradually. As I mentioned, this package would be used to test Laravel
+Applications, potentially. This project is released recently in the 1.0 version. What would encourage me to develop is
+to read your ideas and viewpoints. So Not only I would like to know your thoughts about that gap in the feature test But
+also your view about the Sicilian Test Orchestra would be helpful. This package has a long way to go, obviously. I would
+like you to hear your idea freely so make an issue in my GitHub.
+
 ## Contributing
 
 We welcome contributions to the Sicilian Test Orchestra package. Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details
@@ -185,7 +191,3 @@ on our code of conduct and the process for submitting pull requests.
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-## Acknowledgments
-
-- Faker Library
-- [Other dependencies or acknowledgments]
