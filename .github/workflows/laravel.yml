@@ -53,7 +53,7 @@ jobs:
           coverage: xdebug
 
       - name: Create SQLite database
-        run: touch ../.../sicilian.sqlite
+        run: touch ../../sicilian.sqlite
 
       - name: Install dependencies
         run: |
