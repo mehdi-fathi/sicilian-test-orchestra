@@ -31,6 +31,6 @@
     </php>
     <listeners>
         <listener class="CustomTestListener"
-                  file="/Users/mehdi/Sites/sicilian-test-orchestra/tests/Tests/CustomTestListener.php"/>
+                  file="tests/Tests/CustomTestListener.php"/>
     </listeners>
 </phpunit>

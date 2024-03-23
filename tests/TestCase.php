@@ -19,6 +19,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
 {
 
     use DatabaseMigrations;
+
     /**
      * @var m\LegacyMockInterface|m\MockInterface
      */
@@ -30,29 +31,14 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $this->app->register(\Tests\ServiceProviderTest::class); // Register your service provider
 
-
-        // $this->loadMigrationsFrom([
-        //     '/Users/mehdi/Sites/sicilian-test-orchestra/2024_02_28_163404_users',
-        //
-        // ]);
-
-        // $this->publishes([
-        //     '/Users/mehdi/Sites/sicilian-test-orchestra' => database_path('migrations'),
-        // ], 'migrations');
-
-        // $this->app->register(RouteServiceProvider::class); // Register your service provider
-
     }
 
 
+    /**
+     * @return void
+     */
     protected function runDatabaseMigrations()
     {
-        // Set the custom path for your migrations
-        $customMigrationPath = '/Users/mehdi/Sites/sicilian-test-orchestra/tests/Tests/migrations';
-
-        // dump($customMigrationPath);
-
-
         $this->artisan('migrate:fresh', [
             '--path' => '../../../tests/Tests/migrations',
         ]);
@@ -71,13 +57,13 @@ class TestCase extends \Orchestra\Testbench\TestCase
         return [\Tests\ServiceProviderTest::class];
     }
 
+    /**
+     * @return mixed
+     */
     public function createApplication()
     {
-        // TODO: Implement createApplication() method.
-
-        $app = require '/Users/mehdi/Sites/sicilian-test-orchestra/vendor/laravel/laravel/bootstrap/app.php';
+        $app = require __DIR__ . '/../vendor/laravel/laravel/bootstrap/app.php';
         $app->make(Kernel::class)->bootstrap();
-
 
         return $app;
     }
