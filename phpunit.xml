@@ -20,6 +20,7 @@
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="SESSION_DRIVER" value="file"/>
         <env name="DB_DATABASE" value="sicilian" />
         <env name="DB_USERNAME" value="default" />
         <env name="DB_PASSWORD" value="secret" />
