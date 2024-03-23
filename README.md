@@ -1,5 +1,7 @@
 # Sicilian Test Orchestra
 
+[![Run tests](https://github.com/mehdi-fathi/sicilian-test-orchestra/actions/workflows/laravel.yml/badge.svg)](https://github.com/mehdi-fathi/sicilian-test-orchestra/actions/workflows/laravel.yml)
+
 Sicilian Test Orchestra is an automated testing package designed for RESTful applications. It tests all routes with
 generated faker data to ensure comprehensive coverage and robustness of your application.
 
