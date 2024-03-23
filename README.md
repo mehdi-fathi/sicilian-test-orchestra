@@ -5,6 +5,10 @@
 Sicilian Test Orchestra is an automated testing package designed for RESTful applications. It tests all routes with
 generated faker data to ensure comprehensive coverage and robustness of your application.
 
+
+![alt text](./sicilian-test-orchestra.png "sicilian-test-orchestra")
+
+
 A new way of testing to closely mimic user behavior. We never truncate the database after a test. These days, we have to
 consider any scenario and provide mock data in the database for any scenario. At whole, sometimes we can't consider all
 scenarios.
