@@ -24,8 +24,11 @@ class SampleRouteTest extends TestCase
     /**
      *
      */
-    public function __construct()
+
+    public function setUp(): void
     {
+        parent::setUp();
+
         $this->testOrchestraRequests = (new RequestStrategyList())->getRequests();
     }
 
