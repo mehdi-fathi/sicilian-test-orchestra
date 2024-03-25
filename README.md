@@ -187,7 +187,6 @@ class ExampleTest extends TestCase
 
 ```
 php artisan test
-    
 ```
 
 ![alt text](./test_1.png "sicilian-test-orchestra")
