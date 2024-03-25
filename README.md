@@ -67,10 +67,10 @@ updating.
 - PHP 8.x or above
 - Laravel >= 8.x
 
-
+``
 ## Installation
 
-1- Run the following command in your project directory to add the Eloquent Filter as a dependency
+1- Run the following command in your project directory to add the sicilian Test Orchestra as a dependency
 
         $ composer require mehdi-fathi/sicilian-test-orchestra
 
