@@ -183,6 +183,15 @@ class ExampleTest extends TestCase
 
 ```
 
+4- Run test:
+
+```
+php artisan test
+    
+```
+
+![alt text](./test_1.png "sicilian-test-orchestra")
+
 ## About Sicilian Test Orchestra in detail
 
 Since this package is really young, I want to foster that gradually. As I mentioned, this package would be used to test Laravel
